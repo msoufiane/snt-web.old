@@ -1,9 +1,8 @@
 const {resolve} = require('path');
 
 const webpack = require('webpack');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const CopyWebpackPlugin = require('copy-webpack-plugin');
-const OpenBrowserPlugin = require('open-browser-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const pkg = require('./package.json');
 
 const config = {
     devtool: 'cheap-module-eval-source-map',
@@ -14,11 +13,11 @@ const config = {
         resolve(__dirname, 'src/index.js'),
     ],
     output: {
-        filename: 'bundle.js',
+        filename: '[name]-bundle.js',
+        chunkFilename: '[name]-[hash].js',
         path: resolve(__dirname, 'dist'),
         publicPath: '',
     },
-    // context: resolve(__dirname, 'src'),
     devServer: {
         hot: true,
         contentBase: resolve(__dirname, 'build'),
@@ -32,6 +31,16 @@ const config = {
                 use: {
                     loader: 'babel-loader'
                 }
+            },
+            {
+                test: /\.css$/,
+                loaders: ['style-loader', 'css-loader'],
+                include: [/node_modules/]
+            },
+            {
+                test: /\.css$/,
+                loaders: ['to-string-loader', 'css-loader'],
+                exclude: [/node_modules/] //add this line so we ignore css coming from node_modules
             },
             { test: /\.(png|jpg|gif)$/, use: 'url-loader?limit=15000&name=images/[name].[ext]' },
             { test: /\.eot(\?v=\d+.\d+.\d+)?$/, use: 'file-loader?&name=fonts/[name].[ext]' },
@@ -51,10 +60,14 @@ const config = {
             },
         }),
         new webpack.optimize.ModuleConcatenationPlugin(),
-        new ExtractTextPlugin({ filename: './styles/style.css', disable: false, allChunks: true }),
-        // new CopyWebpackPlugin([{ from: 'vendors', to: 'vendors' }]),
-        new OpenBrowserPlugin({ url: 'http://localhost:8080' }),
         new webpack.HotModuleReplacementPlugin(),
+        new HtmlWebpackPlugin({
+            template: resolve(__dirname, 'src/index.html')
+        }),
+        new webpack.optimize.CommonsChunkPlugin({
+            name: 'vendor',
+            minChunks: ({ resource }) => /node_modules/.test(resource),
+        })
     ],
 };
 
