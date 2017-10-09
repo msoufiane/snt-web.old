@@ -13,9 +13,9 @@ class App extends React.Component {
 		return (
 			<div className="main">
 				<NavbarComponent/>
-				<div className="content-wrapper" style={this.props.authUser.token ? null : {margin: "0px"}}>
+				<div className='content-wrapper' style={ this.props.authUser.token ? null : {margin: '0px'} }>
 					<SidebarComponent/>
-					<section className="content">
+					<section className='content'>
 						{this.props.children}
 					</section>
 				</div>

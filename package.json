@@ -34,6 +34,7 @@
     "babel-preset-flow": "^6.23.0",
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-2": "^6.24.1",
+    "codacy-coverage": "^2.0.3",
     "copy-webpack-plugin": "^4.1.1",
     "enzyme": "^3.1.0",
     "eslint": "^4.4.1",
@@ -42,6 +43,7 @@
     "flow-bin": "^0.56.0",
     "graphql-tag": "^2.0.0",
     "html-webpack-plugin": "^2.30.1",
+    "istanbul": "^0.4.5",
     "jest-enzyme": "^4.0.1",
     "jest-transform-graphql": "^2.1.0",
     "open-browser-webpack-plugin": "^0.0.5",
@@ -56,8 +58,6 @@
   "scripts": {
     "dev": "yarn build && ./node_modules/webpack-dev-server/bin/webpack-dev-server.js -d --progress --hot",
     "build": "./node_modules/rimraf/bin.js dist && ./node_modules/.bin/webpack --config webpack.config.js -p --progress --hot",
-
-
     "lint": "./node_modules/eslint/bin/eslint.js .",
     "flow": "./node_modules/flow-bin/cli.js .",
     "start": "./node_modules/.bin/webpack --config webpack.config.js",

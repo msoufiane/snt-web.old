@@ -16,4 +16,7 @@ module.exports = {
         '/node_modules',
         '/coverage/',
     ],
+    unmockedModulePathPatterns: [
+        "react"
+    ],
 };
