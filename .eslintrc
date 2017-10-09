@@ -1,17 +1,35 @@
 {
-    "extends": [
-      "airbnb",
-      "plugin:flowtype/recommended"
-    ],
-    "parser": "babel-eslint",
-    "plugins": [
-      "flowtype"
-    ],
-    "globals": {
-        "__NODE__": true,
-        "__WEB__": true
-    },
-    "env": {
-      "jest": true
+  "parser": "babel-eslint",
+  "extends": [
+    "eslint:recommended",
+    "plugin:import/recommended",
+    "plugin:react/recommended"
+  ],
+  "parserOptions": {
+    "ecmaVersion": 6,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true,
+      "experimentalObjectRestSpread": true
     }
+  },
+  "env": {
+    "jest": true
+  },
+  "rules": {
+    "valid-jsdoc": 2,
+    "react/jsx-uses-react": 1,
+    "react/jsx-no-undef": 2,
+    "react/jsx-wrap-multilines": 2,
+    "react/no-string-refs": 0
+  },
+  "globals": {
+    "__NODE__": true,
+    "__WEB__": true
+  },
+  "plugins": [
+    "import",
+    "react",
+    "flowtype"
+  ]
 }

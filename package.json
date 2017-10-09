@@ -26,14 +26,20 @@
     "superagent": "^3.5.2"
   },
   "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-flow": "^6.23.0",
     "eslint": "^4.4.1",
     "eslint-plugin-flowtype": "^2.35.0",
+    "flow-bin": "^0.56.0",
     "react-scripts": "1.0.7"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "lint": "./node_modules/eslint/bin/eslint.js .",
+    "flow": "./node_modules/flow-bin/cli.js .",
+
+    "start": "react-scripts yarn start",
     "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
+    "test": "yarn lint && yarn flow && react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   }
 }
