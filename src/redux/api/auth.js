@@ -17,7 +17,6 @@ export const logout = () => {
 	try {
 		const serializedState = sessionStorage.getItem('state');
 		if (serializedState !== null) {
-			console.log(serializedState);
 			request.defaults.headers.common['Authorization'] = `Token ${serializedState.authUser.token}`;
 			return request.post('http://localhost:8000/api/auth/logout/')
 				.then(response => response.data)
@@ -26,7 +25,6 @@ export const logout = () => {
 				});
 		}
 	} catch (error) {
-		console.error(error);
 		throw error;
 	}
 };

@@ -14,7 +14,9 @@
     }
   },
   "env": {
-    "jest": true
+    "browser": true,
+    "jest": true,
+    "es6": true
   },
   "rules": {
     "valid-jsdoc": 2,

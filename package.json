@@ -36,7 +36,6 @@
   "scripts": {
     "lint": "./node_modules/eslint/bin/eslint.js .",
     "flow": "./node_modules/flow-bin/cli.js .",
-
     "start": "react-scripts yarn start",
     "build": "react-scripts build",
     "test": "yarn lint && yarn flow && react-scripts test --env=jsdom",
