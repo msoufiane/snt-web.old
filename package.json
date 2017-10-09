@@ -33,15 +33,18 @@
     "eslint-plugin-flowtype": "^2.35.0",
     "eslint-plugin-jest": "^21.2.0",
     "flow-bin": "^0.56.0",
+    "graphql-tag": "^2.0.0",
     "jest-enzyme": "^4.0.1",
     "jest-transform-graphql": "^2.1.0",
-    "react-scripts": "1.0.7"
+    "react-scripts": "1.0.7",
+    "webpack": "^3.6.0",
+    "webpack-dev-server": "^2.9.1"
   },
   "scripts": {
     "lint": "./node_modules/eslint/bin/eslint.js .",
     "flow": "./node_modules/flow-bin/cli.js .",
-    "start": "react-scripts yarn start",
-    "build": "react-scripts build",
+    "build": "./node_modules/.bin/webpack --config webpack.config.js",
+    "start": "./node_modules/.bin/webpack --config webpack.config.js",
     "test": "jest --config jest.config.js && yarn lint && yarn flow",
     "eject": "react-scripts eject"
   }
