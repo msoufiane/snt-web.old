@@ -1,0 +1,6 @@
+src/registerServiceWorker.js
+jest.config.js
+coverage/
+.idea/
+node_modules/
+public/

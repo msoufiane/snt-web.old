@@ -16,6 +16,7 @@
   "env": {
     "browser": true,
     "jest": true,
+    "node": true,
     "es6": true
   },
   "rules": {
@@ -23,7 +24,8 @@
     "react/jsx-uses-react": 1,
     "react/jsx-no-undef": 2,
     "react/jsx-wrap-multilines": 2,
-    "react/no-string-refs": 0
+    "react/no-string-refs": 0,
+    "react/prop-types": 0
   },
   "globals": {
     "__NODE__": true,
