@@ -1,0 +1,16 @@
+{
+  "presets": [
+    ["env", {
+      "targets": {
+        "chrome": "60"
+      }
+    }],
+    "react",
+    "stage-2",
+    "flow"
+  ],
+  "plugins": [
+    "react-hot-loader/patch",
+    ["transform-class-properties", { "spec": true }]
+  ]
+}

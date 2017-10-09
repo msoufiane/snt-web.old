@@ -10,4 +10,4 @@ export default function* rootSaga() {
 		fork(authSaga),
 		fork(logoutSaga),
 	]);
-};
+}

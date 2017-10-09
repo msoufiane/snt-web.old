@@ -41,7 +41,7 @@ class LoginForm extends React.Component {
 	};
 	
 	submit = (credentials) => {
-		const {handleLogin} = this.props;
+		const { handleLogin } = this.props;
 		return new Promise((resolve, reject) => {
 			handleLogin({...credentials, resolve, reject});
 		}).catch((error) => {

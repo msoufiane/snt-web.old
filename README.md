@@ -1,5 +1,6 @@
-This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/588410444d8e483d92e827de8c11e0a2)](https://www.codacy.com?utm_source=git@bitbucket.org&amp;utm_medium=referral&amp;utm_content=sentadmedia/snt-web&amp;utm_campaign=Badge_Grade)
 
+This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 Below you will find some information on how to perform common tasks.<br>
 You can find the most recent version of this guide [here](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md).
 
