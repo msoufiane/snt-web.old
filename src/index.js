@@ -1,31 +1,29 @@
-import $ from 'jquery';
-// Import css
-import 'admin-lte/dist/css/skins/skin-purple.min.css';
-import 'font-awesome/css/font-awesome.min.css';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import 'admin-lte/dist/css/AdminLTE.min.css';
-import 'ionicons/css/ionicons.min.css';
+/* eslint-disable import/default */
 
-// Import React/Redux stuff
 import React from 'react';
-import {render} from 'react-dom';
-import {Provider} from 'react-redux'
-import registerServiceWorker from './registerServiceWorker';
+import { render } from 'react-dom';
+import { AppContainer } from 'react-hot-loader';
+import configureStore, { history } from './store/configureStore';
+import Root from './components/Root';
+import './styles/styles.scss'; // Yep, that's right. You can import SASS/CSS files too! Webpack will run the associated loader and plug this into the page.
+require('./favicon.ico'); // Tell webpack to load favicon.ico
+const store = configureStore();
 
-import store from './redux/store';
-import routes from './routes';
+render(
+  <AppContainer>
+    <Root store={store} history={history} />
+  </AppContainer>,
+  document.getElementById('app')
+);
 
-window.jQuery = window.$ = $;
-require('bootstrap');
-require('fastclick');
-require('slimscroll');
-require('admin-lte');
-
-
-let rootElement = document.getElementById('wrapper');
-render((
-	<Provider store={store}>
-		{routes}
-	</Provider>
-), rootElement);
-registerServiceWorker();
+if (module.hot) {
+  module.hot.accept('./components/Root', () => {
+    const NewRoot = require('./components/Root').default;
+    render(
+      <AppContainer>
+        <NewRoot store={store} history={history} />
+      </AppContainer>,
+      document.getElementById('app')
+    );
+  });
+}
