@@ -6,40 +6,46 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {push} from 'react-router-redux';
 import {reduxForm, Field, SubmissionError} from 'redux-form';
+import Proptypes from 'prop-types';
 
-import {authRequest} from '../../../redux/actions/login';
+import {authRequest} from '../../../actions/login';
 
 class LoginForm extends React.Component {
-	usernameInput = ({input, meta: {touched, error}, ...custom}) => {
+  componentWillUpdate(nextProps) {
+    const {redirectAfterLogin} = this.props;
+    if (nextProps.submitSucceeded) redirectAfterLogin('/');
+  }
+
+  usernameInput = ({input, meta: {touched, error}, ...custom}) => {
 		const hasError = touched && error !== undefined;
 		return (
-			<div className={hasError ? 'form-group has-feedback has-error' : 'form-group has-feedback'}>
-				<input className='form-control' placeholder="Username" type="text" {...input} {...custom} />
+			<div className={hasError ? "form-group has-feedback has-error" : "form-group has-feedback"}>
+				<input className="form-control" placeholder="Username" type="text" {...input} {...custom} />
 				<label className="glyphicon glyphicon-envelope form-control-feedback" htmlFor="username"/>
 				{hasError && <span className="help-block"> {error} </span>}
 			</div>
 		);
 	};
-	
+
 	passwordInput = ({input, meta: {touched, error}, ...custom}) => {
 		const hasError = touched && error !== undefined;
 		return (
-			<div className={hasError ? 'form-group has-feedback has-error' : 'form-group has-feedback'}>
+			<div className={hasError ? "form-group has-feedback has-error" : "form-group has-feedback"}>
 				<input className="form-control" placeholder="Password" type="password" {...input} {...custom} />
 				<label className="glyphicon glyphicon-lock form-control-feedback" htmlFor="password"/>
 				{hasError && <span className="help-block"> {error} </span>}
 			</div>
 		);
 	};
-	
+
 	serverError = ({meta: {error}}) => {
 		return (
-			<div className={error !== undefined ? 'form-group has-feedback has-error' : 'form-group has-feedback'}>
+			<div className={error !== undefined ? "form-group has-feedback has-error" : "form-group has-feedback"}>
 				{error !== undefined && <span className="help-block"> {error} </span>}
 			</div>
 		);
 	};
-	
+
 	submit = (credentials) => {
 		const { handleLogin } = this.props;
 		return new Promise((resolve, reject) => {
@@ -48,12 +54,8 @@ class LoginForm extends React.Component {
 			throw new SubmissionError(error);
 		});
 	};
-	
-	componentWillUpdate(nextProps) {
-		const {redirectAfterLogin} = this.props;
-		if (nextProps.submitSucceeded) redirectAfterLogin('/');
-	}
-	
+
+
 	render() {
 		const {handleSubmit} = this.props;
 		return (
@@ -70,7 +72,7 @@ class LoginForm extends React.Component {
 				</div>
 				<Field name="serverError" component={this.serverError}/>
 			</form>
-		)
+		);
 	}
 }
 
@@ -90,7 +92,13 @@ const mapDispatchToProps = (dispatch) => {
 	return {
 		redirectAfterLogin: path => dispatch(push(path)),
 		handleLogin: payload => dispatch(authRequest(payload)),
-	}
+	};
+};
+
+LoginForm.prototype = {
+  redirectAfterLogin: Proptypes.func,
+  handleLogin: Proptypes.func,
+  handleSubmit: Proptypes.func
 };
 
 export default reduxForm({form: 'login', validate})(
