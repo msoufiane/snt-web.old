@@ -12,12 +12,12 @@ import Root from './components/Root';
 import registerServiceWorker from './registerServiceWorker';
 
 window.jQuery = window.$ = $;
+require("babel-polyfill");
 require('bootstrap');
 require('fastclick');
 require('slimscroll');
 require('admin-lte');
 require('./favicon.ico');
-require("babel-polyfill");
 
 const store = configureStore();
 

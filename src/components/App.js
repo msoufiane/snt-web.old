@@ -5,20 +5,23 @@ import {Switch, Route} from 'react-router';
 import Login from '../screens/login';
 import Dashboard from '../screens/dashboard';
 import NotFoundPage from '../screens/NotFoundPage';
-import HomePage from '../components/HomePage';
+import HomePage from '../screens/HomePage';
+import AuthRoute from './AuthRoute';
+
 
 
 class App extends React.Component {
   render() {
     return (
       <Switch>
-        <Route exact path="/" component={HomePage}/>
+        <AuthRoute exact path="/" component={HomePage}/>
+        <AuthRoute path="/dashboard" component={Dashboard}/>
         <Route path="/login" component={Login}/>
-        <Route path="/dashboard" component={Dashboard}/>
         <Route component={NotFoundPage}/>
       </Switch>
     );
   }
 }
+
 
 export default App;
