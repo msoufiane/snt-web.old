@@ -11,21 +11,15 @@ import configureStore, {history} from './store/configureStore';
 import Root from './components/Root';
 import registerServiceWorker from './registerServiceWorker';
 
-
-// import {Provider} from 'react-redux';
-
-// import store from './redux/store';
-
-const store = configureStore();
-// import routes from './routes';
-
 window.jQuery = window.$ = $;
 require('bootstrap');
 require('fastclick');
 require('slimscroll');
 require('admin-lte');
 require('./favicon.ico');
+require("babel-polyfill");
 
+const store = configureStore();
 
 render(
   <AppContainer>
@@ -47,11 +41,3 @@ if (module.hot) {
 }
 
 registerServiceWorker();
-/*
-let rootElement = document.getElementById('wrapper');
-render((
-  <Provider store={store}>
-    {routes}
-  </Provider>
-), rootElement);
-*/

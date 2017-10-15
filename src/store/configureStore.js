@@ -1,47 +1,66 @@
 import {createStore, compose, applyMiddleware} from 'redux';
 import reduxImmutableStateInvariant from 'redux-immutable-state-invariant';
-import thunk from 'redux-thunk';
 import createHistory from 'history/createBrowserHistory';
+import createSagaMiddleware from 'redux-saga';
 // 'routerMiddleware': the new way of storing route changes with redux middleware since rrV4.
-import { routerMiddleware } from 'react-router-redux';
-import rootReducer from '../reducers';
+import {routerMiddleware} from 'react-router-redux';
+
 export const history = createHistory();
-function configureStoreProd(initialState) {
+
+import {loadState, saveState} from './localStorage';
+import rootReducer from '../reducers';
+import rootSaga from '../sagas';
+
+
+function configureStoreProd() {
+  const sagaMiddleware = createSagaMiddleware();
   const reactRouterMiddleware = routerMiddleware(history);
-  const middlewares = [
-    // Add other middleware on this line...
+  const enhancers = applyMiddleware(sagaMiddleware, reactRouterMiddleware);
 
-    // thunk middleware can also accept an extra argument to be passed to each thunk action
-    // https://github.com/gaearon/redux-thunk#injecting-a-custom-argument
-    thunk,
-    reactRouterMiddleware,
-  ];
+  const persistedState = loadState();
 
-  return createStore(rootReducer, initialState, compose(
-    applyMiddleware(...middlewares)
-    )
+  const store = createStore(
+    rootReducer,
+    persistedState,
+    compose(enhancers)
   );
+
+  store.subscribe(() => {
+    const state = store.getState();
+    saveState({
+      authUser: state.authUser,
+    });
+  });
+
+  sagaMiddleware.run(rootSaga);
+
+  return store;
 }
 
-function configureStoreDev(initialState) {
+function configureStoreDev() {
+  const sagaMiddleware = createSagaMiddleware();
   const reactRouterMiddleware = routerMiddleware(history);
-  const middlewares = [
-    // Add other middleware on this line...
+  const enhancers = applyMiddleware(sagaMiddleware, reactRouterMiddleware, reduxImmutableStateInvariant());
 
-    // Redux middleware that spits an error on you when you try to mutate your state either inside a dispatch or between dispatches.
-    reduxImmutableStateInvariant(),
+  const composeSetup = typeof window === 'object' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
+    ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ : compose;
 
-    // thunk middleware can also accept an extra argument to be passed to each thunk action
-    // https://github.com/gaearon/redux-thunk#injecting-a-custom-argument
-    thunk,
-    reactRouterMiddleware,
-  ];
+  const persistedState = loadState();
 
-  const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose; // add support for Redux dev tools
-  const store = createStore(rootReducer, initialState, composeEnhancers(
-    applyMiddleware(...middlewares)
-    )
+  const store = createStore(
+    rootReducer,
+    persistedState,
+    composeSetup(enhancers)
   );
+
+  store.subscribe(() => {
+    const state = store.getState();
+    saveState({
+      authUser: state.authUser,
+    });
+  });
+
+  sagaMiddleware.run(rootSaga);
 
   if (module.hot) {
     // Enable Webpack hot module replacement for reducers

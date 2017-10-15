@@ -22,15 +22,17 @@
     "test:CI": "babel-node tools/testCi.js",
     "test:cover": "npm run test -- --coverage ",
     "test:cover:CI": "npm run test:CI -- --coverage && cat ./coverage/lcov.info | node_modules/coveralls/bin/coveralls.js",
-    "test:watch": "npm run test -- --watch",
+    "test:watch": "npm run test -- --watchAll",
     "open:cover": "npm run test:cover && opn ./coverage/lcov-report/index.html",
     "analyze-bundle": "babel-node ./tools/analyzeBundle.js"
   },
   "author": "Soufiane Mghanen <mgh.soufiane@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "admin-lte": "^2.4.2",
-    "ionicons": "^3.0.0",
+    "admin-lte": "2.4.2",
+    "axios": "0.16.2",
+    "babel-polyfill": "6.26.0",
+    "ionicons": "3.0.0",
     "object-assign": "4.1.0",
     "react": "16.0.0",
     "react-dom": "16.0.0",
@@ -38,7 +40,8 @@
     "react-router-dom": "4.2.2",
     "react-router-redux": "5.0.0-alpha.6",
     "redux": "3.6.0",
-    "redux-thunk": "2.1.0"
+    "redux-form": "7.1.1",
+    "redux-saga": "0.15.6"
   },
   "devDependencies": {
     "autoprefixer": "7.1.4",
@@ -47,13 +50,15 @@
     "babel-eslint": "7.2.3",
     "babel-jest": "20.0.3",
     "babel-loader": "7.1.1",
+    "babel-plugin-transform-class-properties": "^6.24.1",
     "babel-plugin-transform-react-constant-elements": "6.23.0",
     "babel-plugin-transform-react-remove-prop-types": "0.4.6",
-    "babel-polyfill": "6.23.0",
+    "babel-plugin-transform-regenerator": "^6.26.0",
     "babel-preset-env": "1.6.0",
+    "babel-preset-flow": "^6.23.0",
     "babel-preset-react": "6.24.1",
     "babel-preset-react-hmre": "1.1.1",
-    "babel-preset-stage-1": "6.24.1",
+    "babel-preset-stage-1": "^6.24.1",
     "browser-sync": "2.18.12",
     "chalk": "2.0.1",
     "connect-history-api-fallback": "1.3.0",
@@ -113,13 +118,23 @@
   "babel": {
     "presets": [
       "react",
-      "stage-1"
+      "stage-1",
+      "flow"
     ],
     "env": {
       "development": {
         "presets": [
           "env",
           "react-hmre"
+        ],
+        "plugins": [
+          "transform-regenerator",
+          [
+            "transform-class-properties",
+            {
+              "spec": true
+            }
+          ]
         ]
       },
       "production": {
@@ -138,8 +153,15 @@
           ]
         ],
         "plugins": [
+          "transform-regenerator",
           "transform-react-constant-elements",
-          "transform-react-remove-prop-types"
+          "transform-react-remove-prop-types",
+          [
+            "transform-class-properties",
+            {
+              "spec": true
+            }
+          ]
         ]
       },
       "test": {

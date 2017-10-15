@@ -16,11 +16,11 @@ export default {
     extensions: ['*', '.js', '.jsx', '.json']
   },
   devtool: 'source-map', // more info:https://webpack.js.org/guides/production/#source-mapping and https://webpack.js.org/configuration/devtool/
-  entry: path.resolve(__dirname, 'src/index'),
+  entry: ['babel-polyfill', path.resolve(__dirname, 'src/index')],
   target: 'web',
   output: {
     path: path.resolve(__dirname, 'dist'),
-    publicPath: '/',
+    publicPath: '',
     filename: '[name].[chunkhash].js'
   },
   plugins: [
@@ -56,7 +56,7 @@ export default {
     }),
 
     // Minify JS
-    new webpack.optimize.UglifyJsPlugin({ sourceMap: true }),
+    new webpack.optimize.UglifyJsPlugin({sourceMap: true}),
   ],
   module: {
     rules: [
@@ -137,7 +137,8 @@ export default {
                 minimize: true,
                 sourceMap: true
               }
-            }, {
+            },
+            {
               loader: 'postcss-loader',
               options: {
                 plugins: () => [
@@ -145,7 +146,8 @@ export default {
                 ],
                 sourceMap: true
               }
-            }, {
+            },
+            {
               loader: 'sass-loader',
               options: {
                 includePaths: [path.resolve(__dirname, 'src', 'scss')],

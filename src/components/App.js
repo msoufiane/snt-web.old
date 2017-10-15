@@ -1,24 +1,24 @@
 /* eslint-disable import/no-named-as-default */
 import React from 'react';
-import PropTypes from 'prop-types';
+import {Switch, Route} from 'react-router';
 
-// This is a class-based component because the current
-// version of hot reloading won't hot reload a stateless
-// component at the top-level.
+import Login from '../screens/login';
+import Dashboard from '../screens/dashboard';
+import NotFoundPage from '../screens/NotFoundPage';
+import HomePage from '../components/HomePage';
+
 
 class App extends React.Component {
   render() {
-    // const activeStyle = {color: 'blue'};
     return (
-      <div>
-        Soufiane
-      </div>
+      <Switch>
+        <Route exact path="/" component={HomePage}/>
+        <Route path="/login" component={Login}/>
+        <Route path="/dashboard" component={Dashboard}/>
+        <Route component={NotFoundPage}/>
+      </Switch>
     );
   }
 }
-
-App.propTypes = {
-  children: PropTypes.element
-};
 
 export default App;
