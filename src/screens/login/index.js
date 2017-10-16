@@ -3,7 +3,7 @@
  */
 
 import React from 'react';
-import {LoginForm} from '../../components/authentication';
+// import {LoginForm} from '../../components/authentication';
 
 
 class Login extends React.Component {
@@ -12,7 +12,7 @@ class Login extends React.Component {
       <div className="login-box">
         <div className="login-box-body">
           <p className="login-box-msg">Sign in to start your session</p>
-          <LoginForm/>
+          Login Page
           <br/><a>I forgot my password</a>
         </div>
       </div>
