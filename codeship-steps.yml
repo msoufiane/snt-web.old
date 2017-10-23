@@ -1,0 +1,5 @@
+install:
+  - nvm install 8.2.1
+  - yarn install
+script:
+  - yarn run test:CI
