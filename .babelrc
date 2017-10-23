@@ -50,6 +50,15 @@
     "test": {
       "presets": [
         "env"
+      ],
+      "plugins": [
+        "transform-regenerator",
+        [
+          "transform-class-properties",
+          {
+            "spec": true
+          }
+        ]
       ]
     }
   }
