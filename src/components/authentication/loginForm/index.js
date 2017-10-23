@@ -6,7 +6,6 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {push} from 'react-router-redux';
 import {reduxForm, Field, SubmissionError} from 'redux-form';
-import Proptypes from 'prop-types';
 
 import {authRequest} from '../../../actions/login';
 
@@ -93,12 +92,6 @@ const mapDispatchToProps = (dispatch) => {
 		redirectAfterLogin: path => dispatch(push(path)),
 		handleLogin: payload => dispatch(authRequest(payload)),
 	};
-};
-
-LoginForm.prototype = {
-  redirectAfterLogin: Proptypes.func,
-  handleLogin: Proptypes.func,
-  handleSubmit: Proptypes.func
 };
 
 export default reduxForm({form: 'login', validate})(

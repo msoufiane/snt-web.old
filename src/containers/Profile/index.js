@@ -2,20 +2,19 @@
  * Created by soufiaane on 7/3/17.
  */
 
-import React from 'react';
+import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import PropTypes from 'prop-types';
 
-import {logoutRequest} from '../../../../actions/login';
+import {logoutRequest} from '../../actions/login';
 
-class ProfileComponent extends React.Component {
+class ProfileContainer extends Component {
   handleLogout(event) {
     event.preventDefault();
     this.props.logout();
   }
 
   render() {
-    const {first_name, last_name, username} = this.props;
+    const {first_name, last_name, username} = this.props.user;
     const capitaize = string => string.charAt(0).toUpperCase() + string.slice(1);
 
     return (
@@ -46,11 +45,10 @@ class ProfileComponent extends React.Component {
   }
 }
 
-ProfileComponent.prototype = {
-  logout: PropTypes.func,
-  first_name: PropTypes.string,
-  last_name: PropTypes.string,
-  username: PropTypes.string,
+const mapStateToProps = (state) => {
+  return {
+    user: state.authUser,
+  };
 };
 
 const mapDispatchToProps = (dispatch) => {
@@ -59,10 +57,4 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-const mapStateToProps = (state) => {
-  return {
-    ...state.authUser,
-  };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(ProfileComponent);
+export default connect(mapStateToProps, mapDispatchToProps)(ProfileContainer);

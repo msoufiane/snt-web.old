@@ -65,7 +65,7 @@ acorn@^5.0.0, acorn@^5.0.3, acorn@^5.1.1:
   version "5.1.1"
   resolved "https://registry.yarnpkg.com/acorn/-/acorn-5.1.1.tgz#53fe161111f912ab999ee887a90a0bc52822fd75"
 
-admin-lte@2.4.2:
+admin-lte@^2.4.2:
   version "2.4.2"
   resolved "https://registry.yarnpkg.com/admin-lte/-/admin-lte-2.4.2.tgz#6a2928fa34715881eb69a09b64dbccc8d5fae539"
   dependencies:
@@ -1400,21 +1400,27 @@ browserify-sign@^4.0.0:
     inherits "^2.0.1"
     parse-asn1 "^5.0.0"
 
-browserify-zlib@^0.1.4, browserify-zlib@~0.1.2:
+browserify-zlib@^0.1.4:
   version "0.1.4"
   resolved "https://registry.yarnpkg.com/browserify-zlib/-/browserify-zlib-0.1.4.tgz#bb35f8a519f600e0fa6b8485241c979d0141fb2d"
   dependencies:
     pako "~0.2.0"
 
+browserify-zlib@~0.2.0:
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/browserify-zlib/-/browserify-zlib-0.2.0.tgz#2869459d9aa3be245fe8fe2ca1f46e2e7f54d73f"
+  dependencies:
+    pako "~1.0.5"
+
 browserify@>=3.46.0:
-  version "14.4.0"
-  resolved "https://registry.yarnpkg.com/browserify/-/browserify-14.4.0.tgz#089a3463af58d0e48d8cd4070b3f74654d5abca9"
+  version "14.5.0"
+  resolved "https://registry.yarnpkg.com/browserify/-/browserify-14.5.0.tgz#0bbbce521acd6e4d1d54d8e9365008efb85a9cc5"
   dependencies:
     JSONStream "^1.0.3"
     assert "^1.4.0"
     browser-pack "^6.0.1"
     browser-resolve "^1.11.0"
-    browserify-zlib "~0.1.2"
+    browserify-zlib "~0.2.0"
     buffer "^5.0.2"
     cached-path-relative "^1.0.0"
     concat-stream "~1.5.1"
@@ -1434,7 +1440,7 @@ browserify@>=3.46.0:
     insert-module-globals "^7.0.0"
     labeled-stream-splicer "^2.0.0"
     module-deps "^4.0.8"
-    os-browserify "~0.1.1"
+    os-browserify "~0.3.0"
     parents "^1.0.1"
     path-browserify "~0.0.0"
     process "~0.11.0"
@@ -3674,8 +3680,8 @@ inline-source-map@~0.6.0:
     source-map "~0.5.3"
 
 inputmask@^3.3.7:
-  version "3.3.9"
-  resolved "https://registry.yarnpkg.com/inputmask/-/inputmask-3.3.9.tgz#b19ac3cadc5e5e918fb8f2fd0a9156b345cecf4c"
+  version "3.3.10"
+  resolved "https://registry.yarnpkg.com/inputmask/-/inputmask-3.3.10.tgz#f8395da03484ebf05c73a4f141adcf9f02a03f42"
 
 inquirer@^3.0.6:
   version "3.2.2"
@@ -5214,9 +5220,9 @@ os-browserify@^0.2.0:
   version "0.2.1"
   resolved "https://registry.yarnpkg.com/os-browserify/-/os-browserify-0.2.1.tgz#63fc4ccee5d2d7763d26bbf8601078e6c2e0044f"
 
-os-browserify@~0.1.1:
-  version "0.1.2"
-  resolved "https://registry.yarnpkg.com/os-browserify/-/os-browserify-0.1.2.tgz#49ca0293e0b19590a5f5de10c7f265a617d8fe54"
+os-browserify@~0.3.0:
+  version "0.3.0"
+  resolved "https://registry.yarnpkg.com/os-browserify/-/os-browserify-0.3.0.tgz#854373c7f5c2315914fc9bfc6bd8238fdda1ec27"
 
 os-homedir@^1.0.0, os-homedir@^1.0.1:
   version "1.0.2"
@@ -5270,6 +5276,10 @@ pace@0.0.4:
 pako@~0.2.0:
   version "0.2.9"
   resolved "https://registry.yarnpkg.com/pako/-/pako-0.2.9.tgz#f3f7522f4ef782348da8161bad9ecfd51bf83a75"
+
+pako@~1.0.5:
+  version "1.0.6"
+  resolved "https://registry.yarnpkg.com/pako/-/pako-1.0.6.tgz#0101211baa70c4bca4a0f63f2206e97b7dfaf258"
 
 param-case@2.1.x:
   version "2.1.1"
