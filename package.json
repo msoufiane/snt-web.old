@@ -20,6 +20,7 @@
     "prod": "NODE_ENV=production node server.js",
     "test": "jest",
     "test:CI": "jest --coverage",
+    "postinstall": "babel-node tools/build.js",
     "test:cover": "cat ./coverage/lcov.info | node_modules/.bin/codacy-coverage -t 7a7d6515c73d4bc8ac81c169d3b8b8ac -v",
     "test:cover:CI": "npm run test:CI -- --coverage && cat ./coverage/lcov.info | node_modules/.bin/codacy-coverage -t 7a7d6515c73d4bc8ac81c169d3b8b8ac -v",
     "test:watch": "npm run test -- --watchAll",
