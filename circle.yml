@@ -28,4 +28,4 @@ deployment:
   staging:
     branch: webpack_build
     heroku:
-      appname: foo-bar-123
+      appname: foo-bar-1234
