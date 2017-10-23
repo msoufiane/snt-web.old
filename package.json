@@ -20,7 +20,7 @@
     "test": "jest",
     "test:CI": "babel-node tools/testCi.js",
     "test:cover": "npm run test -- --coverage ",
-    "test:cover:CI": "npm run test:CI -- --coverage && cat ./coverage/lcov.info | node_modules/coveralls/bin/coveralls.js",
+    "test:cover:CI": "npm run test:CI -- --coverage && cat ./coverage/lcov.info | node_modules/.bin/codacy-coverage -t 7a7d6515c73d4bc8ac81c169d3b8b8ac -v",
     "test:watch": "npm run test -- --watchAll",
     "open:cover": "npm run test:cover && opn ./coverage/lcov-report/index.html",
     "analyze-bundle": "babel-node ./tools/analyzeBundle.js"
