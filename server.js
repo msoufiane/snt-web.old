@@ -1,13 +1,13 @@
 // in server.js
-const express = require('express');
-const path = require('path');
+const express = require("express");
+const path = require("path");
 const app = express();
 
 // Since the root/src dir contains our index.html
-app.use(express.static(__dirname + '/dist/'));
+app.use(express.static(__dirname + "/dist/"));
 
-app.get('/', function(req, res) {
-  res.sendFile(path.resolve(__dirname, 'dist/index.html'));
+app.get("*", function(req, res) {
+  res.sendFile(path.resolve(__dirname, "ist/index.html"));
 });
 
 // Heroku bydefault set an ENV variable called PORT=443
