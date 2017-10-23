@@ -8,8 +8,8 @@ image: node:6.9.4
 pipelines:
   default:
     - step:
-        caches:
-          - node
-        script: # Modify the commands below to build your repository.
-          - yarn install
+        script:
+          - curl -o- -L https://yarnpkg.com/install.sh | bash -s -- --version 0.18.1
+          - export PATH=$HOME/.yarn/bin:$PATH
+          - yarn
           - yarn run test:CI
