@@ -2,20 +2,18 @@
  * Created by soufiaane on 7/8/17.
  */
 
-import React from 'react';
-import {Link} from 'react-router';
-import {connect} from 'react-redux';
-import PropTypes from 'prop-types';
+import React, {Component} from 'react';
+import {Link} from 'react-router-dom';
+
+import ProfileContainer from '../../../containers/Profile';
 
 import NotificationsComponent from './NotificationsComponent';
 import MessagesComponent from './MessagesComponent';
-import ProfileComponent from './ProfileComponent';
 import TasksComponent from './TasksComponent';
 
-class NavbarComponent extends React.Component {
+class NavbarComponent extends Component {
   render() {
     const {isLogged} = this.props;
-
     return (
       <header className="main-header">
         {isLogged &&
@@ -26,7 +24,7 @@ class NavbarComponent extends React.Component {
         }
         {isLogged &&
         <nav className="navbar navbar-static-top">
-          <a href="/" className="sidebar-toggle" data-toggle="offcanvas" role="button">
+          <a href="#" className="sidebar-toggle" data-toggle="push-menu" role="button">
             <span className="sr-only">Toggle navigation</span>
             <span className="icon-bar"/>
             <span className="icon-bar"/>
@@ -37,7 +35,7 @@ class NavbarComponent extends React.Component {
               <MessagesComponent/>
               <NotificationsComponent/>
               <TasksComponent/>
-              <ProfileComponent/>
+              <ProfileContainer/>
             </ul>
           </div>
         </nav>
@@ -47,14 +45,4 @@ class NavbarComponent extends React.Component {
   }
 }
 
-NavbarComponent.prototype = {
-  isLogged: PropTypes.bool
-};
-
-const mapStateToProps = (state) => {
-  return {
-    isLogged: !!state.authUser.token
-  };
-};
-
-export default connect(mapStateToProps)(NavbarComponent);
+export default NavbarComponent;
