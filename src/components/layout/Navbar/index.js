@@ -14,7 +14,6 @@ import TasksComponent from './TasksComponent';
 class NavbarComponent extends Component {
   render() {
     const {isLogged} = this.props;
-    console.log('NavbarComponent', isLogged);
     return (
       <header className="main-header">
         {isLogged &&

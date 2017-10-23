@@ -1,5 +1,3 @@
-import React from 'react';
-
 describe('<FuelSavingsForm />', () => {
   it('should contain <FuelSavingsTextInput /> components', () => {
 
