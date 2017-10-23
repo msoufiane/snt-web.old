@@ -36,6 +36,7 @@
     "express": "^4.16.2",
     "ionicons": "3.0.0",
     "object-assign": "4.1.0",
+    "path": "^0.12.7",
     "react": "16.0.0",
     "react-dom": "16.0.0",
     "react-redux": "5.0.5",
