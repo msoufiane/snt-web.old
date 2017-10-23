@@ -9,7 +9,7 @@ import {render} from 'react-dom';
 import { AppContainer } from 'react-hot-loader';
 import configureStore, {history} from './store/configureStore';
 import Root from './components/Root';
-import registerServiceWorker from './registerServiceWorker';
+// import registerServiceWorker from './registerServiceWorker';
 
 window.jQuery = window.$ = $;
 require("babel-polyfill");
@@ -40,4 +40,4 @@ if (module.hot) {
   });
 }
 
-registerServiceWorker();
+// registerServiceWorker();
