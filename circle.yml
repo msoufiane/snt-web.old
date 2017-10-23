@@ -20,7 +20,7 @@ dependencies:
 ## Customize test commands
 test:
   override:
-    - yarn run test
+    - yarn run test:CI
   post:
       - yarn run test:cover
 
