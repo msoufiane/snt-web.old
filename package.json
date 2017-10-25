@@ -20,10 +20,9 @@
     "prebuild": "npm run clean-dist",
     "build": "babel-node tools/build.js",
 
-    "prepublish": "babel-node tools/build.js",
-    "publish:dev": "yarn run prepublish && babel-node tools/s3-upload.js dev",
-    "publish:pre": "yarn run prepublish && babel-node tools/s3-upload.js pre",
-    "publish:pro": "yarn run prepublish && babel-node tools/s3-upload.js pro",
+    "publish:dev": "babel-node tools/s3-upload.js dev",
+    "publish:pre": "babel-node tools/s3-upload.js pre",
+    "publish:pro": "babel-node tools/s3-upload.js pro",
 
     "cover": "cat ./coverage/lcov.info | node_modules/.bin/codacy-coverage -t 7a7d6515c73d4bc8ac81c169d3b8b8ac -v",
 
