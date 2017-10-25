@@ -6,23 +6,30 @@
     "npm": ">=3"
   },
   "scripts": {
-    "start-message": "babel-node tools/startMessage.js",
-    "prestart": "npm-run-all --parallel start-message",
+    "preinstall": "babel-node tools/setup-hooks.js",
+
     "start": "npm-run-all --parallel test:watch open:src lint:watch",
+    "test:watch": "npm run test -- --watchAll",
     "open:src": "babel-node tools/srcServer.js",
-    "open:dist": "babel-node tools/distServer.js",
-    "lint": "esw webpack.config.* src tools --color",
     "lint:watch": "npm run lint -- --watch",
+    "test": "jest",
+    "lint": "esw webpack.config.* src tools --color",
+
     "clean-dist": "npm run remove-dist && mkdir dist",
     "remove-dist": "rimraf ./dist",
-    "prebuild": "npm run clean-dist && npm run lint && npm run test",
-    "build": "babel-node tools/build.js && npm run open:dist",
-    "test": "jest",
+    "prebuild": "npm run clean-dist",
+    "build": "babel-node tools/build.js",
+
+    "prepublish": "babel-node tools/build.js",
+    "publish:dev": "yarn run prepublish && babel-node tools/s3-upload.js dev",
+    "publish:pre": "yarn run prepublish && babel-node tools/s3-upload.js pre",
+    "publish:pro": "yarn run prepublish && babel-node tools/s3-upload.js pro",
+
+    "cover": "cat ./coverage/lcov.info | node_modules/.bin/codacy-coverage -t 7a7d6515c73d4bc8ac81c169d3b8b8ac -v",
+
     "test:CI": "jest --coverage",
-    "test:cover": "cat ./coverage/lcov.info | node_modules/.bin/codacy-coverage -t 7a7d6515c73d4bc8ac81c169d3b8b8ac -v",
-    "test:cover:CI": "npm run test:CI -- --coverage && cat ./coverage/lcov.info | node_modules/.bin/codacy-coverage -t 7a7d6515c73d4bc8ac81c169d3b8b8ac -v",
-    "test:watch": "npm run test -- --watchAll",
-    "open:cover": "npm run test:cover && opn ./coverage/lcov-report/index.html",
+
+    "start:dist": "yarn run build && babel-node tools/distServer.js",
     "analyze-bundle": "babel-node ./tools/analyzeBundle.js"
   },
   "author": "Soufiane Mghanen <mgh.soufiane@gmail.com>",
@@ -30,9 +37,12 @@
   "dependencies": {
     "admin-lte": "2.4.2",
     "axios": "0.16.2",
+    "babel-cli": "^6.26.0",
     "babel-polyfill": "6.26.0",
+    "express": "^4.16.2",
     "ionicons": "3.0.0",
     "object-assign": "4.1.0",
+    "path": "^0.12.7",
     "react": "16.0.0",
     "react-dom": "16.0.0",
     "react-redux": "5.0.5",
@@ -44,7 +54,6 @@
   },
   "devDependencies": {
     "autoprefixer": "7.1.4",
-    "babel-cli": "6.24.1",
     "babel-core": "6.25.0",
     "babel-eslint": "7.2.3",
     "babel-jest": "20.0.3",
@@ -90,6 +99,7 @@
     "redux-immutable-state-invariant": "2.0.0",
     "replace": "0.3.0",
     "rimraf": "2.6.1",
+    "s3": "^4.4.0",
     "sass-loader": "6.0.6",
     "style-loader": "0.19.0",
     "url-loader": "0.5.9",
