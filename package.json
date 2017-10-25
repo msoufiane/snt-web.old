@@ -23,7 +23,7 @@
     "prepublish": "babel-node tools/build.js",
     "publish:dev": "babel-node tools/s3-upload.js dev",
     "publish:pre": "babel-node tools/s3-upload.js pre",
-    "publish:pro": "babel-node tools/s3-upload.js pro",
+    "publish:pro": "babel-node tools/s3-upload.js prod",
 
     "cover": "cat ./coverage/lcov.info | node_modules/.bin/codacy-coverage -t 7a7d6515c73d4bc8ac81c169d3b8b8ac -v",
 
