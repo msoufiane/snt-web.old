@@ -17,3 +17,17 @@ test:
   post:
       - yarn run test:cover
       - yarn run build
+
+deployment:
+  production:
+    branch: master
+    commands:
+      - yarn run publish
+  staging:
+    branch: pre
+    commands:
+      - yarn run publish
+  dev:
+    branch: dev
+    commands:
+      - yarn run publish
