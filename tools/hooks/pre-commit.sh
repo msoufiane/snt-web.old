@@ -16,3 +16,4 @@ echo "PRE COMMIT HOOK"
 # fi
 #
 # echo "Running Rocket Web pre-flight checks. Run git push with --no-verify flag to bypass."
+yarn run lint
