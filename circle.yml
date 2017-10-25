@@ -15,19 +15,18 @@ test:
   override:
     - yarn run test:CI
   post:
-      - yarn run test:cover
-      - yarn run build
+      - yarn run cover
 
 deployment:
   production:
     branch: master
     commands:
-      - yarn run publish
+      - yarn run publish:pro
   staging:
     branch: pre
     commands:
-      - yarn run publish
+      - yarn run publish:pre
   dev:
     branch: dev
     commands:
-      - yarn run publish
+      - yarn run publish:dev
