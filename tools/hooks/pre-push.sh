@@ -1,6 +1,6 @@
 #!/bin/sh
 # Check if we actually have commits to push
-echo "Running Rocket Web pre-flight checks. Run git push with --no-verify flag to bypass."
+echo "Running SENTAD Web pre-push checks. Run git push with --no-verify flag to bypass."
 
 
 # branch=`git rev-parse --abbrev-ref HEAD`

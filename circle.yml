@@ -1,23 +1,16 @@
-## Customize the test machine
 machine:
-  # Version of ruby to use
   node:
     version:
       8.2.1
 
-  # Add some environment variables
   environment:
-    CIRCLE_ENV: test
+    NODE_ENV: test
 
-## Customize dependencies
 dependencies:
   override:
-    - yarn install: # note ':' here
-        timeout: 180 # fail if command has no output for 3 minutes
-        # IMPORTANT NOTE: ^^ the timeout modifier above must be
-        # double indented (four spaces) from the previous line
+    - yarn install:
+        timeout: 180
 
-## Customize test commands
 test:
   override:
     - yarn run test:CI
