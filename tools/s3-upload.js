@@ -1,6 +1,6 @@
-var s3 = require('s3');
+const s3 = require('s3');
 
-var client = s3.createClient({
+const client = s3.createClient({
   maxAsyncS3: 20,     // this is the default
   s3RetryCount: 3,    // this is the default
   s3RetryDelay: 1000, // this is the default
@@ -17,7 +17,7 @@ var client = s3.createClient({
   },
 });
 
-var params = {
+const params = {
   localDir: "dist",
   deleteRemoved: true, // default false, whether to remove s3 objects
                        // that have no corresponding local file.
@@ -30,7 +30,7 @@ var params = {
   },
 };
 
-var uploader = client.uploadDir(params);
+const uploader = client.uploadDir(params);
 uploader.on('error', function(err) {
   console.error("unable to sync:", err.stack);
 });

@@ -5,14 +5,6 @@ import webpack from 'webpack';
 import config from '../webpack.config.prod';
 import {chalkError, chalkSuccess, chalkWarning, chalkProcessing} from './chalkConfig';
 
-const sys = require('sys');
-const exec = require('child_process').exec;
-
-function puts(error, stdout, stderr) { sys.puts(stdout) }
-
-exec("ln -s -f $(pwd)/tools/hooks/pre-push.sh .git/hooks/pre-push && chmod +x .git/hooks/pre-push", puts);
-exec("ln -s -f $(pwd)/tools/hooks/pre-commit.sh .git/hooks/pre-commit && chmod +x .git/hooks/pre-commit", puts);
-
 process.env.NODE_ENV = 'production'; // this assures React is built in prod mode and that the Babel dev config doesn't apply.
 
 console.log(chalkProcessing('Generating minified bundle. This will take a moment...'));

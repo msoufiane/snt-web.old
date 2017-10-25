@@ -23,9 +23,4 @@ test:
     - yarn run test:CI
   post:
       - yarn run test:cover
-
-deployment:
-  staging:
-    branch: webpack_build
-    heroku:
-      appname: foo-bar-1234
+      - yarn run build
