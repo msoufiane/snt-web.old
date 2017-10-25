@@ -11,7 +11,7 @@ const client = s3.createClient({
   s3Options: {
     accessKeyId: "AKIAJVXJXYA5A3AYCR6Q",
     secretAccessKey: "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",
-    region: "us-west-2",
+    region: "us-east-1",
   },
 });
 
@@ -19,15 +19,17 @@ let params = {
   localDir: "dist",
   deleteRemoved: true,
   s3Params: {
-    Bucket: "sentad",
+    Bucket: "snt-",
     Prefix: "",
   },
 };
 
 if (process.argv[2] === "pre") {
-  params.s3Params.Bucket += "-pre";
+  params.s3Params.Bucket += "pre";
 } else if (process.argv[2] === "dev") {
-  params.s3Params.Bucket += "-dev";
+  params.s3Params.Bucket += "dev";
+} else if (process.argv[2] === "prod") {
+  params.s3Params.Bucket += "prod";
 }
 
 const uploader = client.uploadDir(params);
