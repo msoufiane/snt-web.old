@@ -6,10 +6,13 @@ import './styles/styles.scss';
 
 import React from 'react';
 import {render} from 'react-dom';
-import { AppContainer } from 'react-hot-loader';
+import {AppContainer} from 'react-hot-loader';
 import configureStore, {history} from './store/configureStore';
-import Root from './components/Root';
 // import registerServiceWorker from './registerServiceWorker';
+import {ConnectedRouter} from 'react-router-redux';
+import {Provider} from 'react-redux';
+
+import App from './App';
 
 window.jQuery = window.$ = $;
 require("babel-polyfill");
@@ -22,18 +25,24 @@ require('./favicon.ico');
 const store = configureStore();
 
 render(
-  <AppContainer>
-    <Root store={store} history={history}/>
-  </AppContainer>,
+  <Provider store={store}>
+    <ConnectedRouter history={history}>
+      <App/>
+    </ConnectedRouter>
+  </Provider>,
   document.getElementById('wrapper')
 );
 
 if (module.hot) {
-  module.hot.accept('./components/Root', () => {
-    const NewRoot = require('./components/Root').default;
+  module.hot.accept('./App', () => {
+    const NewApp = require('./App').default;
     render(
       <AppContainer>
-        <NewRoot store={store} history={history} />
+        <Provider store={store}>
+          <ConnectedRouter history={history}>
+            <NewApp/>
+          </ConnectedRouter>
+        </Provider>
       </AppContainer>,
       document.getElementById('wrapper')
     );

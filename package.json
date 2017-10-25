@@ -13,7 +13,7 @@
     "open:src": "babel-node tools/srcServer.js",
     "lint:watch": "npm run lint -- --watch",
     "test": "jest",
-    "lint": "esw webpack.config.* src tools --color",
+    "lint": "esw src --color",
 
     "clean-dist": "npm run remove-dist && mkdir dist",
     "remove-dist": "rimraf ./dist",

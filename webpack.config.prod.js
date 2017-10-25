@@ -49,10 +49,7 @@ export default {
         minifyCSS: true,
         minifyURLs: true
       },
-      inject: true,
-      // Note that you can add custom options here if you need to handle other custom logic in index.html
-      // To track JavaScript errors via TrackJS, sign up for a free trial at TrackJS.com and enter your token below.
-      trackJSToken: ''
+      inject: true
     }),
 
     // Minify JS
@@ -71,7 +68,7 @@ export default {
           {
             loader: 'url-loader',
             options: {
-              name: '[name].[ext]'
+              name: 'fonts/[name].[contenthash].[ext]'
             }
           }
         ]
@@ -84,7 +81,7 @@ export default {
             options: {
               limit: 10000,
               mimetype: 'application/font-woff',
-              name: '[name].[ext]'
+              name: 'fonts/[name].[ext]'
             }
           }
         ]
@@ -97,7 +94,7 @@ export default {
             options: {
               limit: 10000,
               mimetype: 'application/octet-stream',
-              name: '[name].[ext]'
+              name: 'fonts/[name].[ext]'
             }
           }
         ]
@@ -110,7 +107,7 @@ export default {
             options: {
               limit: 10000,
               mimetype: 'image/svg+xml',
-              name: '[name].[ext]'
+              name: 'img/[name].[ext]'
             }
           }
         ]
@@ -121,7 +118,7 @@ export default {
           {
             loader: 'file-loader',
             options: {
-              name: '[name].[ext]'
+              name: 'img/[name].[ext]'
             }
           }
         ]
