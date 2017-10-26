@@ -4,7 +4,6 @@
 
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
-import PropTypes from 'prop-types';
 import ProfileContainer from '../../../containers/Profile';
 
 import NotificationsComponent from './NotificationsComponent';
@@ -13,16 +12,12 @@ import TasksComponent from './TasksComponent';
 
 class NavbarComponent extends Component {
   render() {
-    const {isLogged} = this.props;
     return (
       <header className="main-header">
-        {isLogged &&
         <Link to="/" className="logo">
           <span className="logo-mini"><b>SA</b>M</span>
           <span className="logo-lg"><b>SentAd</b>Media</span>
         </Link>
-        }
-        {isLogged &&
         <nav className="navbar navbar-static-top">
           <a href="#" className="sidebar-toggle" data-toggle="push-menu" role="button">
             <span className="sr-only">Toggle navigation</span>
@@ -39,14 +34,9 @@ class NavbarComponent extends Component {
             </ul>
           </div>
         </nav>
-        }
       </header>
     );
   }
 }
-
-NavbarComponent.propTypes={
-  isLogged: PropTypes.bool
-};
 
 export default NavbarComponent;

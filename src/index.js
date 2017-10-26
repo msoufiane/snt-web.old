@@ -20,7 +20,7 @@ require('bootstrap');
 require('fastclick');
 require('slimscroll');
 require('admin-lte');
-require('./favicon.ico');
+// require('./favicon.ico');
 
 const store = configureStore();
 

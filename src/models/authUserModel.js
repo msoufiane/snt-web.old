@@ -4,7 +4,7 @@
 
 export const authUserModel = {
   id: null,
-  token: 'fffdgfdhfd',
+  token: '',
   username: "username",
   email: "",
   first_name: "firstname",
