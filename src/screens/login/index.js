@@ -12,10 +12,10 @@ class Login extends React.Component {
   render() {
     return (
       <div className="main">
-        <header className="main-header" />
+        <header className="main-header"/>
         <div className="content-wrapper" style={{margin: '0px'}}>
-          <aside className="main-sidebar">
-            <section className="sidebar" />
+          <aside>
+            <section className="sidebar"/>
             <section className="content">
               <div className="login-box">
                 <div className="login-logo">
