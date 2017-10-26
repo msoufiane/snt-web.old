@@ -4,15 +4,21 @@ import PropTypes from 'prop-types';
 
 export const AuthenticatedRoute = ({component: Component, ...rest}) => (
   <Route {...rest} render={props => (
-    props.isLogged ? (<Component {...props}/>) :
-      (<Redirect to={{pathname: '/login', state: {from: props.location}}}/>)
+    props.isLogged ? (
+      <Component {...props}/>
+    ) : (
+      <Redirect to={{
+        pathname: '/login',
+        push: true,
+        state: {from: props.location}
+      }}/>
+    )
   )}/>
 );
 
-
 AuthenticatedRoute.propTypes = {
-  component: PropTypes.element,
+  component: PropTypes.func,
   isLogged: PropTypes.bool,
-  location: PropTypes.string
+  location: PropTypes.object
 };
 
