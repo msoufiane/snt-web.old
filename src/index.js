@@ -8,7 +8,7 @@ import React from 'react';
 import {render} from 'react-dom';
 import {AppContainer} from 'react-hot-loader';
 import configureStore, {history} from './store/configureStore';
-// import registerServiceWorker from './registerServiceWorker';
+import registerServiceWorker from './registerServiceWorker';
 import {ConnectedRouter} from 'react-router-redux';
 import {Provider} from 'react-redux';
 
@@ -33,6 +33,8 @@ render(
   document.getElementById('wrapper')
 );
 
+registerServiceWorker();
+
 if (module.hot) {
   module.hot.accept('./App', () => {
     const NewApp = require('./App').default;
@@ -46,7 +48,7 @@ if (module.hot) {
       </AppContainer>,
       document.getElementById('wrapper')
     );
+    registerServiceWorker();
   });
 }
 
-// registerServiceWorker();

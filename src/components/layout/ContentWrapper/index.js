@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-
+import PropTypes from 'prop-types';
 
 class ContentWrapperComponent extends Component {
   render() {
@@ -11,6 +11,11 @@ class ContentWrapperComponent extends Component {
     );
   }
 }
+
+ContentWrapperComponent.propTypes={
+  isLogged: PropTypes.bool,
+  children: PropTypes.element
+};
 
 export default ContentWrapperComponent;
 

@@ -2,6 +2,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {Route, Switch} from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 import NavbarComponent from './components/layout/Navbar';
 import SidebarComponent from './components/layout/Sidebar';
@@ -11,6 +12,7 @@ import {AuthenticatedRoute} from './Routes';
 
 import Login from './screens/login';
 import HomePage from './screens/HomePage';
+
 
 class App extends Component {
   render() {
@@ -36,6 +38,11 @@ class App extends Component {
     );
   }
 }
+
+App.propTypes = {
+  isLogged: PropTypes.bool
+};
+
 
 const mapStateToProps = state => {
   return {
