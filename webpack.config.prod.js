@@ -54,6 +54,10 @@ export default {
 
     // Minify JS
     new webpack.optimize.UglifyJsPlugin({sourceMap: true}),
+    new webpack.optimize.CommonsChunkPlugin({
+      name: 'vendor',
+      minChunks: ({resource}) => /node_modules/.test(resource)
+    }),
   ],
   module: {
     rules: [
@@ -125,6 +129,37 @@ export default {
       },
       {
         test: /(\.css|\.scss|\.sass)$/,
+        include: [/node_modules/],
+        use: ExtractTextPlugin.extract({
+          use: [
+            {
+              loader: 'css-loader',
+              options: {
+                minimize: true,
+                sourceMap: true
+              }
+            },
+            {
+              loader: 'postcss-loader',
+              options: {
+                plugins: () => [
+                  require('autoprefixer')
+                ],
+                sourceMap: true
+              }
+            },
+            {
+              loader: 'sass-loader',
+              options: {
+                includePaths: [path.resolve(__dirname, 'node_modules')],
+                sourceMap: true
+              }
+            }
+          ]
+        })
+      },
+      {
+        test: /(\.css|\.scss|\.sass)$/,
         exclude: /node_modules/,
         use: ExtractTextPlugin.extract({
           use: [
@@ -147,7 +182,7 @@ export default {
             {
               loader: 'sass-loader',
               options: {
-                includePaths: [path.resolve(__dirname, 'src', 'scss')],
+                includePaths: [path.resolve(__dirname, 'src')],
                 sourceMap: true
               }
             }
