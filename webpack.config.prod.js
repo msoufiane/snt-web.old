@@ -1,10 +1,8 @@
-// For info about this file refer to webpack and webpack-hot-middleware documentation
-// For info on how we're generating bundles with hashed filenames for cache busting: https://medium.com/@okonetchnikov/long-term-caching-of-static-assets-with-webpack-1ecb139adb95#.w99i89nsz
+import path from 'path';
 import webpack from 'webpack';
-import ExtractTextPlugin from 'extract-text-webpack-plugin';
 import WebpackMd5Hash from 'webpack-md5-hash';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
-import path from 'path';
+import ExtractTextPlugin from 'extract-text-webpack-plugin';
 
 const GLOBALS = {
   'process.env.NODE_ENV': JSON.stringify('production'),
@@ -35,8 +33,8 @@ export default {
 
     // Generate HTML file that contains references to generated bundles. See here for how this works: https://github.com/ampedandwired/html-webpack-plugin#basic-usage
     new HtmlWebpackPlugin({
-      template: 'src/index.ejs',
-      favicon: 'src/favicon.ico',
+      template: 'src/www/index.ejs',
+      favicon: 'src/www/img/favicon.ico',
       minify: {
         removeComments: true,
         collapseWhitespace: true,
@@ -54,6 +52,10 @@ export default {
 
     // Minify JS
     new webpack.optimize.UglifyJsPlugin({sourceMap: true}),
+    new webpack.optimize.CommonsChunkPlugin({
+      name: 'vendor',
+      minChunks: ({resource}) => /node_modules/.test(resource)
+    }),
   ],
   module: {
     rules: [
@@ -125,6 +127,37 @@ export default {
       },
       {
         test: /(\.css|\.scss|\.sass)$/,
+        include: [/node_modules/],
+        use: ExtractTextPlugin.extract({
+          use: [
+            {
+              loader: 'css-loader',
+              options: {
+                minimize: true,
+                sourceMap: true
+              }
+            },
+            {
+              loader: 'postcss-loader',
+              options: {
+                plugins: () => [
+                  require('autoprefixer')
+                ],
+                sourceMap: true
+              }
+            },
+            {
+              loader: 'sass-loader',
+              options: {
+                includePaths: [path.resolve(__dirname, 'node_modules')],
+                sourceMap: true
+              }
+            }
+          ]
+        })
+      },
+      {
+        test: /(\.css|\.scss|\.sass)$/,
         exclude: /node_modules/,
         use: ExtractTextPlugin.extract({
           use: [
@@ -147,7 +180,7 @@ export default {
             {
               loader: 'sass-loader',
               options: {
-                includePaths: [path.resolve(__dirname, 'src', 'scss')],
+                includePaths: [path.resolve(__dirname, 'src')],
                 sourceMap: true
               }
             }
