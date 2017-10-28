@@ -14,7 +14,7 @@ class NavbarMenu extends React.Component {
 }
 
 NavbarMenu.propTypes = {
-  children: PropTypes.element.isRequired
+  children: PropTypes.arrayOf(PropTypes.element).isRequired
 };
 
 

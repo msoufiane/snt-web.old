@@ -27,9 +27,7 @@ import {
 //endregion
 
 // region SideBar imports
-import {
-  SideBarWrapper,
-} from './components/SideBar';
+import SideBarWrapper from './components/SideBar';
 
 import {
   MenuTree,

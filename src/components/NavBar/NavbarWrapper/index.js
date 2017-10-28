@@ -5,7 +5,7 @@ import NavbarMenu from '../NavbarMenu';
 import NavbarToggle from '../NavbarToggle';
 
 
-class NavbarContainer extends React.Component {
+class NavbarWrapper extends React.Component {
   render() {
     return (
       <header className="main-header">
@@ -21,9 +21,9 @@ class NavbarContainer extends React.Component {
   }
 }
 
-NavbarContainer.propTypes = {
-  children: PropTypes.element.isRequired
+NavbarWrapper.propTypes = {
+  children: PropTypes.arrayOf(PropTypes.element).isRequired
 };
 
 
-export default NavbarContainer;
+export default NavbarWrapper;
