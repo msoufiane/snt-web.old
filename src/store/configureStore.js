@@ -2,7 +2,6 @@ import {createStore, compose, applyMiddleware} from 'redux';
 import reduxImmutableStateInvariant from 'redux-immutable-state-invariant';
 import createHistory from 'history/createBrowserHistory';
 import createSagaMiddleware from 'redux-saga';
-// 'routerMiddleware': the new way of storing route changes with redux middleware since rrV4.
 import {routerMiddleware} from 'react-router-redux';
 
 export const history = createHistory();
@@ -63,7 +62,6 @@ function configureStoreDev() {
   sagaMiddleware.run(rootSaga);
 
   if (module.hot) {
-    // Enable Webpack hot module replacement for reducers
     module.hot.accept('../reducers', () => {
       const nextReducer = require('../reducers').default; // eslint-disable-line global-require
       store.replaceReducer(nextReducer);
