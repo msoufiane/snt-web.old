@@ -8,7 +8,9 @@ import React, {Component} from 'react';
 class Dashboard extends Component {
 	render() {
 		return (
-			<div>this is the dashbord</div>
+      <div className="row">
+        this is the Dashboard
+      </div>
 		);
 	}
 }
