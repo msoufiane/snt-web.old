@@ -1,5 +1,6 @@
 import webpack from 'webpack';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
+import ExtractTextPlugin from 'extract-text-webpack-plugin';
 import path from 'path';
 // import 'babel-polyfill';
 
@@ -28,9 +29,11 @@ export default {
       __DEV__: true
     }),
     new webpack.HotModuleReplacementPlugin(),
+    new ExtractTextPlugin('[name].[contenthash].css'),
     new webpack.NoEmitOnErrorsPlugin(),
     new HtmlWebpackPlugin({     // Create HTML file that includes references to bundled CSS and JS.
-      template: 'src/index.ejs',
+      template: 'src/www/index.ejs',
+      favicon: 'src/www/img/favicon.ico',
       minify: {
         removeComments: true,
         collapseWhitespace: true
@@ -98,12 +101,44 @@ export default {
       },
       {
         test: /(\.css|\.scss|\.sass)$/,
+        include: [/node_modules/],
+        use: ExtractTextPlugin.extract({
+          use: [
+            {
+              loader: 'css-loader',
+              options: {
+                minimize: true,
+                sourceMap: true
+              }
+            },
+            {
+              loader: 'postcss-loader',
+              options: {
+                plugins: () => [
+                  require('autoprefixer')
+                ],
+                sourceMap: true
+              }
+            },
+            {
+              loader: 'sass-loader',
+              options: {
+                includePaths: [path.resolve(__dirname, 'node_modules')],
+                sourceMap: true
+              }
+            }
+          ]
+        })
+      },
+      {
+        test: /(\.css|\.scss|\.sass)$/,
         exclude: /node_modules/,
+        use: ExtractTextPlugin.extract({
         use: [
-          'style-loader',
           {
             loader: 'css-loader',
             options: {
+              minimize: false,
               sourceMap: true
             }
           }, {
@@ -117,11 +152,12 @@ export default {
           }, {
             loader: 'sass-loader',
             options: {
-              includePaths: [path.resolve(__dirname, 'src', 'scss')],
+              includePaths: [path.resolve(__dirname, 'src')],
               sourceMap: true
             }
           }
         ]
+      })
       }
     ]
   }

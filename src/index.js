@@ -1,52 +1,33 @@
-// Set up your application entry point here...
-/* eslint-disable import/default */
-
-import $ from 'jquery';
-import './styles/styles.scss';
-
 import React from 'react';
 import {render} from 'react-dom';
-import {AppContainer} from 'react-hot-loader';
-import configureStore, {history} from './store/configureStore';
-// import registerServiceWorker from './registerServiceWorker';
-import {ConnectedRouter} from 'react-router-redux';
 import {Provider} from 'react-redux';
+import {ConnectedRouter} from 'react-router-redux';
+import configureStore, {history} from './store/configureStore';
 
-import App from './App';
+import 'admin-lte/dist/css/skins/skin-green-light.css';
+import 'ionicons/dist/css/ionicons-core.css';
+import 'font-awesome/css/font-awesome.css';
+import 'bootstrap/dist/css/bootstrap.css';
+import 'admin-lte/dist/css/AdminLTE.css';
+import Routes from './routes/index';
+import $ from 'jquery';
 
+// region jquery imports
 window.jQuery = window.$ = $;
 require("babel-polyfill");
 require('bootstrap');
 require('fastclick');
 require('slimscroll');
 require('admin-lte');
-require('./favicon.ico');
+// endregion
 
 const store = configureStore();
 
 render(
   <Provider store={store}>
     <ConnectedRouter history={history}>
-      <App/>
+      <Routes/>
     </ConnectedRouter>
   </Provider>,
   document.getElementById('wrapper')
 );
-
-if (module.hot) {
-  module.hot.accept('./App', () => {
-    const NewApp = require('./App').default;
-    render(
-      <AppContainer>
-        <Provider store={store}>
-          <ConnectedRouter history={history}>
-            <NewApp/>
-          </ConnectedRouter>
-        </Provider>
-      </AppContainer>,
-      document.getElementById('wrapper')
-    );
-  });
-}
-
-// registerServiceWorker();

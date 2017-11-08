@@ -1,4 +1,3 @@
-src/registerServiceWorker.js
 *.config.*
 tools/*
 package.json

@@ -1,46 +1,74 @@
-/* eslint-disable import/no-named-as-default */
-import React, {Component} from 'react';
-import {connect} from 'react-redux';
-import {Route, Switch} from 'react-router-dom';
+import React from 'react';
+import PropTypes from 'prop-types';
 
-import NavbarComponent from './components/layout/Navbar';
-import SidebarComponent from './components/layout/Sidebar';
-import FooterComponent from './components/layout/Footer';
-import ContentWrapperComponent from './components/layout/ContentWrapper';
-import {AuthenticatedRoute} from './Routes';
+// region Content Imports
+import {
+  ContentBody,
+  ContentHeader,
+  ContentWrapper
+} from './components/Content';
 
-import Login from './screens/login';
-import HomePage from './screens/HomePage';
+import {
+  BreadCrumb
+} from './containers/Content';
+// endregion
 
-class App extends Component {
+// region NavBar imports
+import {
+  NavbarWrapper,
+} from './components/NavBar';
+
+import {
+  Tasks,
+  Profile,
+  Messages,
+  Notifications
+} from './containers/NavBar';
+//endregion
+
+// region SideBar imports
+import SideBarWrapper from './components/SideBar';
+
+import {
+  MenuTree,
+  UserPanel
+} from './containers/SideBar';
+//endregion
+
+// region Footer Importq
+import Footer from './components/Footer';
+// endregion
+
+class App extends React.Component {
   render() {
-    const {isLogged} = this.props;
     return (
-      <div className="main">
-        <NavbarComponent isLogged={isLogged}/>
-        <ContentWrapperComponent isLogged={isLogged}>
-          <aside className={isLogged ? "main-sidebar" : ""}>
-            <section className="sidebar">
-              {isLogged && <SidebarComponent/>}
-            </section>
-            <section className="content">
-              <Switch>
-                <Route path="/login" component={Login}/>
-                <AuthenticatedRoute exact path="/" component={HomePage}/>
-              </Switch>
-            </section>
-          </aside>
-        </ContentWrapperComponent>
-        {isLogged && <FooterComponent/>}
+      <div className="wrapper">
+        <NavbarWrapper>
+          <Messages/>
+          <Notifications/>
+          <Tasks/>
+          <Profile/>
+        </NavbarWrapper>
+
+        <SideBarWrapper UserPanel={UserPanel} Menu={MenuTree}/>
+
+        <ContentWrapper>
+          <ContentHeader>
+            <BreadCrumb/>
+          </ContentHeader>
+          <ContentBody>
+            {this.props.children}
+          </ContentBody>
+        </ContentWrapper>
+
+        <Footer/>
       </div>
     );
   }
 }
 
-const mapStateToProps = state => {
-  return {
-    isLogged: !!state.authUser.token
-  };
+App.propTypes = {
+  children: PropTypes.element.isRequired
 };
 
-export default connect(mapStateToProps, null)(App);
+export default App;
