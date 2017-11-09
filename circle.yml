@@ -4,11 +4,11 @@ machine:
       8.2.1
 
   environment:
-    NODE_ENV: test
+    NODE_ENV: development
 
 dependencies:
   override:
-    - yarn install:
+    - npm install:
         timeout: 180
 
 test:

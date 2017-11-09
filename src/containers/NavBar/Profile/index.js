@@ -20,12 +20,12 @@ class ProfileContainer extends Component {
     return (
       <li className="dropdown user user-menu">
         <a href="/" className="dropdown-toggle" data-toggle="dropdown">
-          <img src="../../../www/img/user2-160x160.jpg" className="user-image" alt="User"/>
+          <img src="img/user2-160x160.jpg" className="user-image" alt="User"/>
           <span className="hidden-xs">{capitaize(user.first_name)} {capitaize(user.last_name)}</span>
         </a>
         <ul className="dropdown-menu">
           <li className="user-header">
-            <img src="../../../www/img/user2-160x160.jpg" className="img-circle" alt="User"/>
+            <img src="img/user2-160x160.jpg" className="img-circle" alt="User"/>
             <p>
               {capitaize(user.first_name)} {capitaize(user.last_name)} - {user.username}
             </p>

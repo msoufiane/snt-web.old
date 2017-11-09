@@ -21,8 +21,10 @@ require('slimscroll');
 require('admin-lte');
 // endregion
 
+const store = configureStore();
+
 render(
-  <Provider store={configureStore()}>
+  <Provider store={store}>
     <ConnectedRouter history={history}>
       <Routes/>
     </ConnectedRouter>
