@@ -1,4 +1,4 @@
-engines:
+plugins:
   eslint:
     enabled: true
     channel: "eslint-4"
@@ -7,9 +7,6 @@ engines:
         extensions:
         - .es6
         - .js
-ratings:
-   paths:
-   - "src/**/*.js"
 checks:
   method-lines:
     enabled: false
