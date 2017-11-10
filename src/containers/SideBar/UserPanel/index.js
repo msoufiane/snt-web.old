@@ -9,7 +9,7 @@ class UserPanel extends React.Component {
         </div>
         <div className="pull-left info">
           <p>Alexander Pierce</p>
-          <a href="#"><i className="fa fa-circle text-success"/> Online</a>
+          <a href=""><i className="fa fa-circle text-success"/> Online</a>
         </div>
       </div>
     );
