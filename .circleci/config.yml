@@ -4,23 +4,23 @@ workflows:
   version: 2
   test_build_deploy:
     jobs:
-      - test
-      - build:
-          requires:
-            - test
-      - coverage:
-          requires:
-            - test
-      - deploy-dev:
+      - build
+      - test:
           requires:
             - build
+      - coverage:
+          requires:
+            - build
+      - deploy-dev:
+          requires:
+            - test
             - coverage
           filters:
             branches:
               only: dev
       - deploy-pre:
           requires:
-            - build
+            - test
             - coverage
           filters:
             branches:
@@ -32,20 +32,19 @@ workflows:
             branches:
               only: master
 
-
 jobs:
-  test:
-       docker:
-         - image: circleci/node:6
-    steps:
-      - run:
-          name: yarn test
-          command: yarn test
   build:
+    docker:
+      - image: circleci/node:6
     steps:
       - run:
           name: Build
           command: yarn build
+  test:
+    steps:
+      - run:
+          name: yarn test
+          command: yarn test
   coverage:
     steps:
       - run:
