@@ -19,14 +19,14 @@ jobs:
     steps:
       - checkout
       - restore_cache:
-        key: dependency-cache-{{ checksum "package.json" }}
+          key: dependency-cache-{{ checksum "package.json" }}
       - run:
-        name: npm Install
-        command: npm install
+          name: npm Install
+          command: npm install
       - save_cache:
-        key: dependency-cache-{{ checksum "package.json" }}
-        paths:
-          - node_modules
+          key: dependency-cache-{{ checksum "package.json" }}
+          paths:
+            - node_modules
 
   test:
     docker:
@@ -34,14 +34,14 @@ jobs:
     steps:
       - checkout
       - run:
-        name: Test
-        command: npm run test
+          name: Test
+          command: npm run test
       - run:
-        name: Generate code coverage
-        command: npm run test:CI
+          name: Generate code coverage
+          command: npm run test:CI
       - store_artifacts:
-        path: coverage
-        prefix: coverage
+          path: coverage
+          prefix: coverage
 
 #machine:
 #  node:
