@@ -23,6 +23,9 @@ jobs:
       - run:
           name: npm Install
           command: npm install
+          environment:
+            NODE_ENV: development
+
       - save_cache:
           key: dependency-cache-{{ checksum "package.json" }}
           paths:
