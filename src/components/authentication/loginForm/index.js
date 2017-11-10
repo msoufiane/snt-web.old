@@ -70,7 +70,7 @@ class LoginForm extends React.Component {
             </button>
           </div>
         </div>
-        <Field name="serverError" component={this.serverError}/>
+        <Field name='serverError' component={this.serverError}/>
       </form>
     );
   }
