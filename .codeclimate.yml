@@ -1,16 +1,18 @@
 version: "2"
+
+checks:
+  method-lines:
+    enabled: false
+
 plugins:
   eslint:
     enabled: true
     channel: "eslint-4"
     config:
-        config: .eslintrc
-        extensions:
+      file: .eslintrc
+      extensions:
         - .es6
         - .js
-check:
-  method-lines:
-    enabled: false
 
 exclude_patterns:
   - "*.config.*"
