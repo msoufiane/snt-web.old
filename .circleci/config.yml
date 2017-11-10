@@ -28,7 +28,6 @@ workflows:
       - deploy-prod:
           requires:
             - deploy-pre
-            - hold
           filters:
             branches:
               only: master
