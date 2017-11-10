@@ -19,6 +19,8 @@ jobs:
   build:
     docker:
       - image: circleci/node:7-browsers
+    environment:
+      - NODE_ENV: development
     steps:
       - checkout
       - restore_cache:
@@ -26,8 +28,7 @@ jobs:
       - run:
           name: yarn Install
           command: npm install
-          environment:
-            NODE_ENV: development
+
       - save_cache:
           key: dependency-cache-{{ checksum "package.json" }}
           paths:
