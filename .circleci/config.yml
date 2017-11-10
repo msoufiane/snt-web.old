@@ -4,7 +4,10 @@ workflows:
   version: 2
   build_and_test:
     jobs:
-      - build
+      - build:
+          filters:
+            branches:
+              only: master
       - test:
           requires:
             - build
@@ -25,7 +28,6 @@ jobs:
           command: npm install
           environment:
             NODE_ENV: development
-
       - save_cache:
           key: dependency-cache-{{ checksum "package.json" }}
           paths:
@@ -38,9 +40,6 @@ jobs:
       - checkout
       - run:
           name: Test
-          command: npm run test
-      - run:
-          name: Generate code coverage
           command: npm run test:CI
       - store_artifacts:
           path: coverage
