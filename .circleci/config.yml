@@ -1,0 +1,44 @@
+version: 2.0
+jobs:
+   build:
+     docker:
+       - image: circleci/node:7-browsers
+     steps:
+       - checkout
+       - run: echo "hello world"
+
+
+#machine:
+#  node:
+#    version:
+#      8.2.1
+#
+#  environment:
+#    NODE_ENV: development
+#    CIRCLE_ARTIFACTS: "coverage"
+#
+#dependencies:
+#  override:
+#    - npm install:
+#        timeout: 180
+#
+#test:
+#  override:
+#    - yarn run test:CI
+#  post:
+#      - yarn run cover
+#
+#deployment:
+#  production:
+#    branch: master
+#    commands:
+#      - yarn run publish:pro
+#  staging:
+#    branch: pre
+#    commands:
+#      - yarn run publish:pre
+#  dev:
+#    branch: dev
+#    commands:
+#      - yarn run publish:dev
+#
