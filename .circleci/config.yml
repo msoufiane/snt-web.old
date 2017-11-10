@@ -5,23 +5,15 @@ workflows:
   test_build_deploy:
     jobs:
       - build
-      - test:
-          requires:
-            - build
-      - coverage:
-          requires:
-            - build
       - deploy-dev:
           requires:
-            - test
-            - coverage
+            - build
           filters:
             branches:
               only: dev
       - deploy-pre:
           requires:
-            - test
-            - coverage
+            - build
           filters:
             branches:
               only: master
@@ -48,23 +40,15 @@ jobs:
           paths:
             - node_modules
       - run:
+          name: Test
+          command: yarn test
+      - run:
+          name: Coverage
+          command: "echo Coverage"
+      - run:
           name: Build
           command: yarn build
-      - test
-  test:
-    docker:
-      - image: circleci/node:6
-    steps:
-      - run:
-          name: yarn test
-          command: yarn test
-  coverage:
-    docker:
-      - image: circleci/node:6
-    steps:
-      - run:
-          name: yarn test
-          command: "echo Coverage"
+
   deploy-dev:
     docker:
       - image: circleci/node:6
@@ -72,6 +56,7 @@ jobs:
       - run:
           name: yarn test
           command: "echo DEPLOY DEV"
+
   deploy-pre:
     docker:
       - image: circleci/node:6
@@ -79,6 +64,7 @@ jobs:
       - run:
           name: yarn test
           command: "echo DEPLOY PRE"
+
   deploy-prod:
     docker:
       - image: circleci/node:6
