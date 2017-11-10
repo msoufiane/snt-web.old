@@ -35,6 +35,8 @@ workflows:
 
 jobs:
   test:
+       docker:
+         - image: circleci/node:6
     steps:
       - run:
           name: yarn test
