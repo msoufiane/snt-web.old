@@ -2,7 +2,7 @@
  * Created by soufiaane on 7/14/17.
  */
 
-import React from 'react';
+// import React from 'react';
 import {connect} from 'react-redux';
 import {push} from 'react-router-redux';
 import {reduxForm, Field, SubmissionError} from 'redux-form';
