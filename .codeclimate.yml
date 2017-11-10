@@ -8,7 +8,7 @@ plugins:
         extensions:
         - .es6
         - .js
-checks:
+check:
   method-lines:
     enabled: false
 
