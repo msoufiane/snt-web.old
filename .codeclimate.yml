@@ -14,10 +14,6 @@ checks:
   method-lines:
     enabled: false
 
-plugins:
-  ESLint:
-    enabled: true
-
 exclude_patterns:
   - "*.config.*"
   - "tools/*"
