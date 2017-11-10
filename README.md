@@ -1,8 +1,6 @@
 ### SentAd front end project
 ____
 [![CircleCI](https://circleci.com/gh/SentadMedia/snt-web.svg?style=svg)](https://circleci.com/gh/SentadMedia/snt-web)
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/588410444d8e483d92e827de8c11e0a2)](https://www.codacy.com?utm_source=git@bitbucket.org&amp;utm_medium=referral&amp;utm_content=sentadmedia/snt-web&amp;utm_campaign=Badge_Grade)
-[![Codacy Badge](https://api.codacy.com/project/badge/Coverage/588410444d8e483d92e827de8c11e0a2)](https://www.codacy.com?utm_source=git@bitbucket.org&utm_medium=referral&utm_content=sentadmedia/snt-web&utm_campaign=Badge_Coverage)
+[![Maintainability](https://api.codeclimate.com/v1/badges/4b8685910ab9557b0d9b/maintainability)](https://codeclimate.com/repos/5a049beb47b5f802ca0000a9/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/4b8685910ab9557b0d9b/test_coverage)](https://codeclimate.com/repos/5a049beb47b5f802ca0000a9/test_coverage)
 ____
-
-
