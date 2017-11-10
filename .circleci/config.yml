@@ -24,7 +24,7 @@ jobs:
       - restore_cache:
           key: dependency-cache-{{ checksum "package.json" }}
       - run:
-          name: npm Install
+          name: yarn Install
           command: npm install
           environment:
             NODE_ENV: development
