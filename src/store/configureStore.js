@@ -3,12 +3,12 @@ import reduxImmutableStateInvariant from 'redux-immutable-state-invariant';
 import createHistory from 'history/createBrowserHistory';
 import createSagaMiddleware from 'redux-saga';
 import {routerMiddleware} from 'react-router-redux';
-
-export const history = createHistory();
-
 import {loadState, saveState} from './localStorage';
 import rootReducer from '../reducers';
 import rootSaga from '../sagas';
+
+export const history = createHistory();
+
 
 
 function configureStoreProd() {

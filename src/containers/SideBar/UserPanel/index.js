@@ -5,7 +5,7 @@ class UserPanel extends React.Component {
     return (
       <div className="user-panel">
         <div className="pull-left image">
-          <img src="img/user2-160x160.jpg" className="img-circle" alt="User Image"/>
+          <img src="%PUBLIC_URL%/img/user2-160x160.jpg" className="img-circle" alt="User"/>
         </div>
         <div className="pull-left info">
           <p>Alexander Pierce</p>

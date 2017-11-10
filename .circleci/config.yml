@@ -2,50 +2,100 @@ version: 2.0
 
 workflows:
   version: 2
-  build_and_test:
+  test_build_deploy:
     jobs:
+      - test
       - build:
-          filters:
-            branches:
-              only: master
-      - test:
+          requires:
+            - test
+      - coverage:
+          requires:
+            - test
+      - deploy-dev:
           requires:
             - build
+            - coverage
+          filters:
+            branches:
+              only: dev
+      - deploy-pre:
+          requires:
+            - build
+            - coverage
+          filters:
+            branches:
+              only: master
+      - deploy-prod:
+          requires:
+            - deploy-pre
+            - hold
           filters:
             branches:
               only: master
 
+
 jobs:
-  build:
-    docker:
-      - image: circleci/node:7-browsers
-    environment:
-      - NODE_ENV: development
-    steps:
-      - checkout
-      - restore_cache:
-          key: dependency-cache-{{ checksum "package.json" }}
-      - run:
-          name: yarn Install
-          command: npm install
-
-      - save_cache:
-          key: dependency-cache-{{ checksum "package.json" }}
-          paths:
-            - node_modules
-
   test:
-    docker:
-      - image: circleci/node:7-browsers
     steps:
-      - checkout
       - run:
-          name: Test
-          command: npm run test:CI
-      - store_artifacts:
-          path: coverage
-          prefix: coverage
+          name: yarn test
+          command: yarn test
+  build:
+    steps:
+      - run:
+          name: Build
+          command: yarn build
+  coverage:
+    steps:
+      - run:
+          name: yarn test
+          command: "echo Coverage"
+  deploy-dev:
+    steps:
+      - run:
+          name: yarn test
+          command: "echo DEPLOY DEV"
+  deploy-pre:
+    steps:
+      - run:
+          name: yarn test
+          command: "echo DEPLOY PRE"
+  deploy-prod:
+    steps:
+      - run:
+          name: yarn test
+          command: "echo DEPLOY PROD"
 
+#   build:
+#     docker:
+#       - image: circleci/node:6
+#     environment:
+#       - NODE_ENV: development
+#     steps:
+#       - checkout
+#       - restore_cache:
+#           key: dependency-cache-{{ checksum "package.json" }}
+#       - run:
+#           name: yarn Install
+#           command: yarn install
+#
+#       - save_cache:
+#           key: dependency-cache-{{ checksum "package.json" }}
+#           paths:
+#             - node_modules
+#
+#   test:
+#     docker:
+#       - image: circleci/node:7-browsers
+#     steps:
+#       - checkout
+#       - run:
+#           name: Test
+#           command: yarn test
+#       - store_artifacts:
+#           path: coverage
+#           prefix: coverage
+#
 #machine:
 #  node:
 #    version:
