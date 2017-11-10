@@ -1,6 +1,12 @@
 engines:
   eslint:
     enabled: true
+    channel: "eslint-4"
+    config:
+        config: .eslintrc
+        extensions:
+        - .es6
+        - .js
 ratings:
    paths:
-   - "src/**/*"
+   - "src/**/*.js"
