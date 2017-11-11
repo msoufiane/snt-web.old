@@ -64,14 +64,14 @@ jobs:
 
   deploy-dev:
     docker:
-      - image: buildpack-deps:trusty
+      - image: fstab/aws-cli
     steps:
       - run:
           name: Setup awscli
           command: apt-get update && apt-get install -y awscli
       - run:
           name: DEPLOY DEV
-          command: aws s3 sync $CIRCLE_ARTIFACTS/build s3://snt-dev --region us-east-1
+          command: aws s3 sync $CIRCLE_ARTIFACTS/build s3://snt-dev --region us-east-1 --delete
 
   deploy-pre:
     docker:
@@ -82,7 +82,7 @@ jobs:
           command: apt-get update && apt-get install -y awscli
       - run:
           name: DEPLOY PRE
-          command: aws s3 sync $CIRCLE_ARTIFACTS/build s3://snt-pre us-east-1
+          command: aws s3 sync $CIRCLE_ARTIFACTS/build s3://snt-pre us-east-1 --delete
 
   deploy-prod:
     docker:
@@ -93,7 +93,7 @@ jobs:
           command: apt-get update && apt-get install -y awscli
       - run:
           name: DEPLOY PROD
-          command: aws s3 sync $CIRCLE_ARTIFACTS/build s3://snt-prod us-east-1
+          command: aws s3 sync $CIRCLE_ARTIFACTS/build s3://snt-prod us-east-1 --delete
 
 #   build:
 #     docker:
