@@ -69,7 +69,6 @@ jobs:
       - run:
           name: Setup awscli
           command: pip install awscli --upgrade --user
-    steps:
       - run:
           name: DEPLOY DEV
           command: aws s3 sync $CIRCLE_ARTIFACTS/build s3://snt-dev
@@ -81,7 +80,6 @@ jobs:
       - run:
           name: Setup awscli
           command: pip install awscli --upgrade --user
-    steps:
       - run:
           name: DEPLOY PRE
           command: aws s3 sync $CIRCLE_ARTIFACTS/build s3://snt-pre
@@ -93,7 +91,6 @@ jobs:
       - run:
           name: Setup awscli
           command: pip install awscli --upgrade --user
-    steps:
       - run:
           name: DEPLOY PROD
           command: aws s3 sync $CIRCLE_ARTIFACTS/build s3://snt-prod
