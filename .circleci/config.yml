@@ -2,50 +2,113 @@ version: 2.0
 
 workflows:
   version: 2
-  build_and_test:
+  test_build_deploy:
     jobs:
-      - build:
+      - build
+      - deploy-dev:
+          requires:
+            - build
+          filters:
+            branches:
+              only: dev
+      - deploy-pre:
+          requires:
+            - build
           filters:
             branches:
               only: master
-      - test:
+      - deploy-prod:
           requires:
-            - build
+            - deploy-pre
           filters:
             branches:
               only: master
 
 jobs:
   build:
-    docker:
-      - image: circleci/node:7-browsers
     environment:
-      - NODE_ENV: development
+      CC_TEST_REPORTER_ID: c8948572d88557d3a8f8b1e4ce7e84dc2dc8b36f31fd6deb6707ba0c6e1cb02a
+    docker:
+      - image: circleci/node:6
     steps:
       - checkout
       - restore_cache:
           key: dependency-cache-{{ checksum "package.json" }}
       - run:
-          name: yarn Install
-          command: npm install
-
+          name: Setup dependencies
+          command: yarn install
+      - run:
+          name: Setup Code Climate test-reporter
+          command: |
+            curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+            chmod +x ./cc-test-reporter
       - save_cache:
           key: dependency-cache-{{ checksum "package.json" }}
           paths:
             - node_modules
-
-  test:
-    docker:
-      - image: circleci/node:7-browsers
-    steps:
-      - checkout
       - run:
-          name: Test
-          command: npm run test:CI
-      - store_artifacts:
-          path: coverage
-          prefix: coverage
+          name: Run tests
+          command: |
+            yarn test
+            ./cc-test-reporter after-build < coverage/lcov.info
+      - run:
+          name: Build
+          command: yarn build
 
+  deploy-dev:
+    docker:
+      - image: circleci/node:6
+    steps:
+      - run:
+          name: DEPLOY DEV
+          command: "echo DEPLOY DEV"
+
+  deploy-pre:
+    docker:
+      - image: circleci/node:6
+    steps:
+      - run:
+          name: DEPLOY PRE
+          command: "echo DEPLOY PRE"
+
+  deploy-prod:
+    docker:
+      - image: circleci/node:6
+    steps:
+      - run:
+          name: DEPLOY PROD
+          command: "echo DEPLOY PROD"
+
+#   build:
+#     docker:
+#       - image: circleci/node:6
+#     environment:
+#       - NODE_ENV: development
+#     steps:
+#       - checkout
+#       - restore_cache:
+#           key: dependency-cache-{{ checksum "package.json" }}
+#       - run:
+#           name: yarn Install
+#           command: yarn install
+#
+#       - save_cache:
+#           key: dependency-cache-{{ checksum "package.json" }}
+#           paths:
+#             - node_modules
+#
+#   test:
+#     docker:
+#       - image: circleci/node:7-browsers
+#     steps:
+#       - checkout
+#       - run:
+#           name: Test
+#           command: yarn test
+#       - store_artifacts:
+#           path: coverage
+#           prefix: coverage
+#
 #machine:
 #  node:
 #    version:
