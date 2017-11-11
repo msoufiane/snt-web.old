@@ -1,23 +1,5 @@
 version: "2"
 
-checks:
-  method-lines:
-    enabled: false
-  similar-code:
-    enabled: false
-  identical-code:
-    enabled: false
-  argument-count:
-    enabled: false
-  file-lines:
-    enabled: false
-  method-count:
-    enabled: false
-  method-lines:
-    enabled: false
-  return-statements:
-    enabled: false
-
 plugins:
   eslint:
     enabled: true
@@ -25,10 +7,9 @@ plugins:
     config:
       file: .eslintrc
       extensions:
-        - .es6
         - .js
 
 exclude_patterns:
-  - "*.config.*"
-  - "tools/*"
+  - "config/*"
+  - "scripts/*"
   - "package.json"

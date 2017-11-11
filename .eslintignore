@@ -1,3 +1,5 @@
-*.config.*
+src/registerServiceWorker.jsx
+src/setupTests.jsx
+scripts/*
+config/*
 tools/*
-package.json
