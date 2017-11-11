@@ -20,7 +20,7 @@ workflows:
       - hold:
          type: approval
          requires:
-           - build
+           - deploy-pre
       - deploy-prod:
           requires:
             - hold
@@ -64,27 +64,39 @@ jobs:
 
   deploy-dev:
     docker:
-      - image: circleci/node:6
+      - image: circleci/python:3
+    steps:
+      - run:
+          name: Setup awscli
+          command: pip install awscli --upgrade --user
     steps:
       - run:
           name: DEPLOY DEV
-          command: "echo DEPLOY DEV"
+          command: aws s3 sync $CIRCLE_ARTIFACTS/build snt-dev
 
   deploy-pre:
     docker:
-      - image: circleci/node:6
+      - image: circleci/python:3
+    steps:
+      - run:
+          name: Setup awscli
+          command: pip install awscli --upgrade --user
     steps:
       - run:
           name: DEPLOY PRE
-          command: "echo DEPLOY PRE"
+          command: aws s3 sync $CIRCLE_ARTIFACTS/build snt-pre
 
   deploy-prod:
     docker:
-      - image: circleci/node:6
+      - image: circleci/python:3
+    steps:
+      - run:
+          name: Setup awscli
+          command: pip install awscli --upgrade --user
     steps:
       - run:
           name: DEPLOY PROD
-          command: "echo DEPLOY PROD"
+          command: aws s3 sync $CIRCLE_ARTIFACTS/build snt-prod
 
 #   build:
 #     docker:
