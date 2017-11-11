@@ -58,17 +58,27 @@ jobs:
       - run:
           name: Build
           command: yarn build
-      - store_artifacts:
-          path: build
-          destination: build
 
   deploy-dev:
     docker:
-      - image: fstab/aws-cli
+      - image: circleci/node:6
     steps:
+      - checkout
+      - run:
+          name: Setup dependencies
+          command: yarn install
+      - run:
+          name: Install awscli
+          command: apt-get update && apt-get install awscli
+      - run:
+          name: Install dependencies
+          command: yarn install
+      - run:
+          name: Buildi
+          command: yarn build
       - run:
           name: DEPLOY DEV
-          command: aws s3 sync $CIRCLE_ARTIFACTS/build s3://snt-dev --region us-east-1 --delete
+          command: aws s3 sync build/ s3://snt-dev --region us-east-1 --delete
 
   deploy-pre:
     docker:
