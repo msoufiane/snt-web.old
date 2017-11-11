@@ -72,7 +72,7 @@ jobs:
     steps:
       - run:
           name: DEPLOY DEV
-          command: aws s3 sync $CIRCLE_ARTIFACTS/build snt-dev
+          command: aws s3 sync $CIRCLE_ARTIFACTS/build s3://snt-dev
 
   deploy-pre:
     docker:
@@ -84,7 +84,7 @@ jobs:
     steps:
       - run:
           name: DEPLOY PRE
-          command: aws s3 sync $CIRCLE_ARTIFACTS/build snt-pre
+          command: aws s3 sync $CIRCLE_ARTIFACTS/build s3://snt-pre
 
   deploy-prod:
     docker:
@@ -96,7 +96,7 @@ jobs:
     steps:
       - run:
           name: DEPLOY PROD
-          command: aws s3 sync $CIRCLE_ARTIFACTS/build snt-prod
+          command: aws s3 sync $CIRCLE_ARTIFACTS/build s3://snt-prod
 
 #   build:
 #     docker:
