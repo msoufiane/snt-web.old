@@ -8,15 +8,11 @@ import {
   ContentWrapper,
 } from './components/Content';
 
-import {
-  BreadCrumb,
-} from './containers/Content/BreadCrumb';
+import BreadCrumb from './containers/Content/BreadCrumb';
 // endregion
 
 // region NavBar imports
-import {
-  NavbarWrapper,
-} from './components/NavBar/NavbarWrapper';
+import NavbarWrapper from './components/NavBar/NavbarWrapper';
 
 import {
   Tasks,

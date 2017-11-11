@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-filename-extension */
 import 'admin-lte/dist/css/skins/skin-green-light.css';
 import 'ionicons/dist/css/ionicons-core.css';
 import 'font-awesome/css/font-awesome.css';

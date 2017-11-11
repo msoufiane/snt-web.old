@@ -3,7 +3,7 @@
  */
 
 import { AUTH_SUCCESS, LOGOUT_SUCCESS } from '../constants/session';
-import { authUserModel } from '../models/authUserModel';
+import authUserModel from '../models/authUserModel';
 
 export default (state = authUserModel, action) => {
   if (!action) return state;

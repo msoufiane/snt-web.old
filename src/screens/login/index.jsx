@@ -5,7 +5,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import { LoginForm } from '../../components/authentication/loginForm';
+import LoginForm from '../../components/authentication/loginForm';
 
 
 const Login = function Login() {

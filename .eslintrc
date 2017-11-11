@@ -1,5 +1,5 @@
 {
-  "extends": ["react-app", "airbnb", "plugin:jsx-a11y/recommended"],
+  "extends": ["react-app", "airbnb", "plugin:jsx-a11y/recommended", "plugin:import/errors", "plugin:import/warnings"],
   "plugins": ["react", "jsx-a11y"],
   "rules": {
     "jsx-a11y/href-no-hash": 0,
