@@ -82,25 +82,45 @@ jobs:
 
   deploy-pre:
     docker:
-      - image: buildpack-deps:trusty
+      - image: circleci/node:6
     steps:
+      - checkout
       - run:
-          name: Setup awscli
-          command: apt-get update && apt-get install -y awscli
+          name: Install awscli
+          command: sudo apt-get update && sudo apt-get install awscli
+      - run:
+          name: Setup dependencies
+          command: yarn install
+      - run:
+          name: Install dependencies
+          command: yarn install
+      - run:
+          name: Build
+          command: yarn build
       - run:
           name: DEPLOY PRE
-          command: aws s3 sync $CIRCLE_ARTIFACTS/build s3://snt-pre us-east-1 --delete
+          command: aws s3 sync build/ s3://snt-pre --region us-east-1 --delete
 
   deploy-prod:
     docker:
-      - image: buildpack-deps:trusty
+      - image: circleci/node:6
     steps:
+      - checkout
       - run:
-          name: Setup awscli
-          command: apt-get update && apt-get install -y awscli
+          name: Install awscli
+          command: sudo apt-get update && sudo apt-get install awscli
+      - run:
+          name: Setup dependencies
+          command: yarn install
+      - run:
+          name: Install dependencies
+          command: yarn install
+      - run:
+          name: Build
+          command: yarn build
       - run:
           name: DEPLOY PROD
-          command: aws s3 sync $CIRCLE_ARTIFACTS/build s3://snt-prod us-east-1 --delete
+          command: aws s3 sync build/ s3://snt-prod --region us-east-1 --delete
 
 #   build:
 #     docker:
