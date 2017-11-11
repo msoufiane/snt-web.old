@@ -67,9 +67,6 @@ jobs:
       - image: fstab/aws-cli
     steps:
       - run:
-          name: Setup awscli
-          command: apt-get update && apt-get install -y awscli
-      - run:
           name: DEPLOY DEV
           command: aws s3 sync $CIRCLE_ARTIFACTS/build s3://snt-dev --region us-east-1 --delete
 
