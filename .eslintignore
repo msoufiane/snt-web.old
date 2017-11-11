@@ -1,5 +1,5 @@
-src/registerServiceWorker.js
-src/setupTests.js
+src/registerServiceWorker.jsx
+src/setupTests.jsx
 scripts/*
 config/*
 tools/*

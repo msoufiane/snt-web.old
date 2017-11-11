@@ -1,3 +1,3 @@
 #!/bin/sh
-echo "PRE COMMIT HOOK"
-
+echo "Running snt-web pre-commit checks."
+yarn run lint
