@@ -64,7 +64,7 @@ jobs:
 
   deploy-dev:
     docker:
-      - image: circleci/python:3
+      - image: buildpack-deps:trusty
     steps:
       - run:
           name: Setup awscli
@@ -75,7 +75,7 @@ jobs:
 
   deploy-pre:
     docker:
-      - image: circleci/python:3
+      - image: buildpack-deps:trusty
     steps:
       - run:
           name: Setup awscli
@@ -86,7 +86,7 @@ jobs:
 
   deploy-prod:
     docker:
-      - image: circleci/python:3
+      - image: buildpack-deps:trusty
     steps:
       - run:
           name: Setup awscli
