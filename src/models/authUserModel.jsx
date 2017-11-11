@@ -2,7 +2,7 @@
  * Created by soufiaane on 7/22/17.
  */
 
-export const authUserModel = {
+const authUserModel = {
   id: null,
   token: '',
   username: 'username',
@@ -10,3 +10,5 @@ export const authUserModel = {
   first_name: 'firstname',
   last_name: 'lastname',
 };
+
+export default authUserModel;

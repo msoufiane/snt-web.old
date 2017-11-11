@@ -10,13 +10,13 @@ import {
 
 import {
   BreadCrumb,
-} from './containers/Content';
+} from './containers/Content/BreadCrumb';
 // endregion
 
 // region NavBar imports
 import {
   NavbarWrapper,
-} from './components/NavBar';
+} from './components/NavBar/NavbarWrapper';
 
 import {
   Tasks,
@@ -39,33 +39,31 @@ import {
 import Footer from './components/Footer';
 // endregion
 
-class App extends React.Component {
-  render() {
-    return (
-      <div className="wrapper">
-        <NavbarWrapper>
-          <Messages />
-          <Notifications />
-          <Tasks />
-          <Profile />
-        </NavbarWrapper>
+const App = function App(props) {
+  return (
+    <div className="wrapper">
+      <NavbarWrapper>
+        <Messages />
+        <Notifications />
+        <Tasks />
+        <Profile />
+      </NavbarWrapper>
 
-        <SideBarWrapper UserPanel={UserPanel} Menu={MenuTree}/>
+      <SideBarWrapper UserPanel={UserPanel} Menu={MenuTree} />
 
-        <ContentWrapper>
-          <ContentHeader>
-            <BreadCrumb />
-          </ContentHeader>
-          <ContentBody>
-            {this.props.children}
-          </ContentBody>
-        </ContentWrapper>
+      <ContentWrapper>
+        <ContentHeader>
+          <BreadCrumb />
+        </ContentHeader>
+        <ContentBody>
+          {props.children}
+        </ContentBody>
+      </ContentWrapper>
 
-        <Footer />
-      </div>
-    );
-  }
-}
+      <Footer />
+    </div>
+  );
+};
 
 App.propTypes = {
   children: PropTypes.element.isRequired,

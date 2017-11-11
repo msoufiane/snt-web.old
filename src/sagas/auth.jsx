@@ -9,7 +9,13 @@ import { authSuccess, logoutSuccess, logoutError } from '../actions/login';
 import { authenticate, logout } from '../api/auth';
 
 
-function* watchAuthRequest({ username, password, resolve, reject, dispatch }) {
+function* watchAuthRequest({
+  username,
+  password,
+  resolve,
+  reject,
+  dispatch,
+}) {
   try {
     const result = yield call(authenticate, username, password, dispatch);
     yield call(resolve);

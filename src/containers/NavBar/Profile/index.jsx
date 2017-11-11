@@ -46,8 +46,8 @@ class ProfileContainer extends Component {
 }
 
 ProfileContainer.propTypes = {
-  logout: PropTypes.func,
-  user: PropTypes.object,
+  logout: PropTypes.func.isRequired,
+  user: PropTypes.element.isRequired,
 };
 
 const mapStateToProps = state => ({

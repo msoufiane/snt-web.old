@@ -5,19 +5,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-class SidebarWrapper extends React.Component {
-  render() {
-    const { UserPanel, Menu } = this.props;
-    return (
-      <aside className="main-sidebar">
-        <section className="sidebar" style={{ height: 'auto' }}>
-          <UserPanel />
-          <Menu />
-        </section>
-      </aside>
-    );
-  }
-}
+const SidebarWrapper = function SidebarWrapper(props) {
+  const { UserPanel, Menu } = props;
+  return (
+    <aside className="main-sidebar">
+      <section className="sidebar" style={{ height: 'auto' }}>
+        <UserPanel />
+        <Menu />
+      </section>
+    </aside>
+  );
+};
 
 SidebarWrapper.propTypes = {
   UserPanel: PropTypes.func.isRequired,

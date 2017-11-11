@@ -16,7 +16,7 @@
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
     "test": "node scripts/test.js --env=jsdom",
-    "lint": "esw src --color --format table",
+    "lint": "esw src --color --format table --ext .js --ext .jsx",
     "preinstall": "node scripts/preinstall.js"
   },
   "dependencies": {
@@ -47,11 +47,13 @@
     "extract-text-webpack-plugin": "3.0.2",
     "fastclick": "^1.0.6",
     "file-loader": "1.1.5",
+    "font-awesome": "^4.7.0",
     "fs-extra": "3.0.1",
     "history": "^4.7.2",
     "html-webpack-plugin": "2.29.0",
     "ionicons": "3.0.0",
     "jest": "20.0.4",
+    "jquery": "^3.2.1",
     "object-assign": "4.1.1",
     "path": "^0.12.7",
     "postcss-flexbugs-fixes": "3.2.0",

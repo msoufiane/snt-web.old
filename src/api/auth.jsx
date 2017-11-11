@@ -11,6 +11,7 @@ export const authenticate = (username, password) => {
     });
 };
 
+// eslint-disable-next-line consistent-return
 export const logout = () => {
   const request = axios.create({ baseURL: 'http://localhost:8000/api/auth/logout/' });
   try {

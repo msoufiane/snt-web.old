@@ -5,26 +5,29 @@ import { Route, Redirect } from 'react-router-dom';
 
 import App from '../../App';
 
-class AuthenticatedRoute extends React.Component {
-  render() {
-    const { component: Component, ...rest } = this.props;
-    return (
-      <Route
-        {...rest}
-        render={() => (this.props.isLogged ?
-        (<App><Component /></App>)
-        :
-        (<Redirect to={{ pathname: '/login', state: { from: this.props.location } }} />)
-        )}
-      />
-    );
-  }
-}
+const AuthenticatedRoute = function AuthenticatedRoute(props) {
+  const {
+    component: Component,
+    location,
+    isLogged,
+    ...rest
+  } = props;
+  return (
+    <Route
+      {...rest}
+      render={() => (isLogged ?
+      (<App><Component /></App>)
+      :
+      (<Redirect to={{ pathname: '/login', state: { from: location } }} />)
+      )}
+    />
+  );
+};
 
 AuthenticatedRoute.propTypes = {
-  component: PropTypes.func,
-  isLogged: PropTypes.bool,
-  location: PropTypes.object,
+  component: PropTypes.func.isRequired,
+  isLogged: PropTypes.bool.isRequired,
+  location: PropTypes.element.isRequired,
 };
 
 const mapStateToProps = state => ({

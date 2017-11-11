@@ -20,9 +20,10 @@ class LoginForm extends React.Component {
     const hasError = touched && error !== undefined;
     return (
       <div className={hasError ? 'form-group has-feedback has-error' : 'form-group has-feedback'}>
-        <input className="form-control" placeholder="Username" type="text" {...input} {...custom} />
-        <label className="glyphicon glyphicon-envelope form-control-feedback" htmlFor="username" />
-        {hasError && <span className="help-block"> {error} </span>}
+        <label className="glyphicon glyphicon-envelope form-control-feedback" htmlFor="username" >
+          <input id="username" className="form-control" placeholder="Username" type="text" {...input} {...custom} />
+          {hasError && <span className="help-block"> {error} </span>}
+        </label>
       </div>
     );
   };
@@ -31,9 +32,10 @@ class LoginForm extends React.Component {
     const hasError = touched && error !== undefined;
     return (
       <div className={hasError ? 'form-group has-feedback has-error' : 'form-group has-feedback'}>
-        <input className="form-control" placeholder="Password" type="password" {...input} {...custom} />
-        <label className="glyphicon glyphicon-lock form-control-feedback" htmlFor="password" />
-        {hasError && <span className="help-block"> {error} </span>}
+        <label className="glyphicon glyphicon-lock form-control-feedback" htmlFor="password" >
+          <input id="password" className="form-control" placeholder="Password" type="password" {...input} {...custom} />
+          {hasError && <span className="help-block"> {error} </span>}
+        </label>
       </div>
     );
   };
@@ -44,8 +46,8 @@ class LoginForm extends React.Component {
     </div>
   );
 
-  submit = (credentials) => {
-    const { handleLogin } = this.props;
+  submit = (props, credentials) => {
+    const { handleLogin } = props;
     return new Promise((resolve, reject) => {
       handleLogin({ ...credentials, resolve, reject });
     }).catch((error) => {
@@ -75,9 +77,9 @@ class LoginForm extends React.Component {
 }
 
 LoginForm.propTypes = {
-  redirectAfterLogin: PropTypes.func,
-  handleLogin: PropTypes.func,
-  handleSubmit: PropTypes.func,
+  redirectAfterLogin: PropTypes.func.isRequired,
+  handleLogin: PropTypes.func.isRequired,
+  handleSubmit: PropTypes.func.isRequired,
 };
 
 const validate = (values) => {

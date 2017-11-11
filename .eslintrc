@@ -2,9 +2,7 @@
   "extends": ["react-app", "airbnb", "plugin:jsx-a11y/recommended"],
   "plugins": ["react", "jsx-a11y"],
   "rules": {
-    "jsx-a11y/href-no-hash": "off",
-    "jsx-a11y/anchor-is-valid": ["warn", { "aspects": ["invalidHref"] }],
-    "react/jsx-filename-extension": 2,
-    "react/prefer-stateless-function": 2
+    "jsx-a11y/href-no-hash": 0,
+    "jsx-a11y/anchor-is-valid": 0
   }
 }
