@@ -27,7 +27,7 @@ workflows:
 jobs:
   build:
     environment:
-      CC_TEST_REPORTER_ID: YOUR_REPO_CC_TEST_REPORTER_ID
+      CC_TEST_REPORTER_ID: c8948572d88557d3a8f8b1e4ce7e84dc2dc8b36f31fd6deb6707ba0c6e1cb02a
     docker:
       - image: circleci/node:6
     steps:
