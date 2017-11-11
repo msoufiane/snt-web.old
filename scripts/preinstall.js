@@ -1,8 +1,7 @@
-const sys = require('util');
 const exec = require('child_process').exec;
 
 function puts(error, stdout, stderr) {
-  sys.puts(stdout);
+  console.log(stdout);
 }
 
 exec("ln -s -f $(pwd)/config/hooks/pre-push.sh .git/hooks/pre-push && chmod +x .git/hooks/pre-push", puts);
