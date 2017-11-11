@@ -68,10 +68,10 @@ jobs:
     steps:
       - run:
           name: Setup awscli
-          command: apt-get update && apt-get install -y awscli
+          command: apt-get install -y awscli
       - run:
           name: DEPLOY DEV
-          command: aws s3 sync $CIRCLE_ARTIFACTS/build s3://snt-dev
+          command: aws s3 sync $CIRCLE_ARTIFACTS/build s3://snt-dev --region us-east-1
 
   deploy-pre:
     docker:
@@ -79,10 +79,10 @@ jobs:
     steps:
       - run:
           name: Setup awscli
-          command: pip install awscli --upgrade --user
+          command: apt-get install -y awscli
       - run:
           name: DEPLOY PRE
-          command: aws s3 sync $CIRCLE_ARTIFACTS/build s3://snt-pre
+          command: aws s3 sync $CIRCLE_ARTIFACTS/build s3://snt-pre us-east-1
 
   deploy-prod:
     docker:
@@ -90,10 +90,10 @@ jobs:
     steps:
       - run:
           name: Setup awscli
-          command: pip install awscli --upgrade --user
+          command: apt-get install -y awscli
       - run:
           name: DEPLOY PROD
-          command: aws s3 sync $CIRCLE_ARTIFACTS/build s3://snt-prod
+          command: aws s3 sync $CIRCLE_ARTIFACTS/build s3://snt-prod us-east-1
 
 #   build:
 #     docker:
