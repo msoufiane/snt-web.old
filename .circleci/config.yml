@@ -26,6 +26,8 @@ workflows:
 
 jobs:
   build:
+    environment:
+      CC_TEST_REPORTER_ID: YOUR_REPO_CC_TEST_REPORTER_ID
     docker:
       - image: circleci/node:6
     steps:
@@ -33,18 +35,23 @@ jobs:
       - restore_cache:
           key: dependency-cache-{{ checksum "package.json" }}
       - run:
-          name: Install
-          command: yarn install && yarn global add codeclimate-test-reporter
+          name: Setup dependencies
+          command: yarn install
       - save_cache:
           key: dependency-cache-{{ checksum "package.json" }}
           paths:
             - node_modules
       - run:
-          name: Test
+          name: Run tests
           command: yarn test
       - run:
+          name: Setup Code Climate test-reporter
+          command: |
+            curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+            chmod +x ./cc-test-reporter
+      - run:
           name: Coverage
-          command: codeclimate-test-reporter < coverage/lcov.info
+          command: ./cc-test-reporter < coverage/lcov.info
       - run:
           name: Build
           command: yarn build
