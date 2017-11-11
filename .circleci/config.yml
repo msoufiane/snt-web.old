@@ -58,45 +58,69 @@ jobs:
       - run:
           name: Build
           command: yarn build
-      - store_artifacts:
-          path: build
-          destination: build
 
   deploy-dev:
     docker:
-      - image: circleci/python:3
+      - image: circleci/node:6
     steps:
+      - checkout
       - run:
-          name: Setup awscli
-          command: pip install awscli --upgrade --user
-    steps:
+          name: Install awscli
+          command: sudo apt-get update && sudo apt-get install awscli
+      - run:
+          name: Setup dependencies
+          command: yarn install
+      - run:
+          name: Install dependencies
+          command: yarn install
+      - run:
+          name: Build
+          command: yarn build
       - run:
           name: DEPLOY DEV
-          command: aws s3 sync $CIRCLE_ARTIFACTS/build s3://snt-dev
+          command: aws s3 sync build/ s3://snt-dev --region us-east-1 --delete
 
   deploy-pre:
     docker:
-      - image: circleci/python:3
+      - image: circleci/node:6
     steps:
+      - checkout
       - run:
-          name: Setup awscli
-          command: pip install awscli --upgrade --user
-    steps:
+          name: Install awscli
+          command: sudo apt-get update && sudo apt-get install awscli
+      - run:
+          name: Setup dependencies
+          command: yarn install
+      - run:
+          name: Install dependencies
+          command: yarn install
+      - run:
+          name: Build
+          command: yarn build
       - run:
           name: DEPLOY PRE
-          command: aws s3 sync $CIRCLE_ARTIFACTS/build s3://snt-pre
+          command: aws s3 sync build/ s3://snt-pre --region us-east-1 --delete
 
   deploy-prod:
     docker:
-      - image: circleci/python:3
+      - image: circleci/node:6
     steps:
+      - checkout
       - run:
-          name: Setup awscli
-          command: pip install awscli --upgrade --user
-    steps:
+          name: Install awscli
+          command: sudo apt-get update && sudo apt-get install awscli
+      - run:
+          name: Setup dependencies
+          command: yarn install
+      - run:
+          name: Install dependencies
+          command: yarn install
+      - run:
+          name: Build
+          command: yarn build
       - run:
           name: DEPLOY PROD
-          command: aws s3 sync $CIRCLE_ARTIFACTS/build s3://snt-prod
+          command: aws s3 sync build/ s3://snt-prod --region us-east-1 --delete
 
 #   build:
 #     docker:
