@@ -14,7 +14,7 @@
     "publish:pro": "babel-node tools/s3-upload.js prod",
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
+    "test": "react-scripts test --env=jsdom --coverage",
     "eject": "react-scripts eject"
   },
   "author": "Soufiane Mghanen <mgh.soufiane@gmail.com>",

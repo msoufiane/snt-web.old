@@ -34,7 +34,7 @@ jobs:
           key: dependency-cache-{{ checksum "package.json" }}
       - run:
           name: Install
-          command: yarn install
+          command: yarn install && yarn install -g codeclimate-test-reporter
       - save_cache:
           key: dependency-cache-{{ checksum "package.json" }}
           paths:
@@ -44,7 +44,7 @@ jobs:
           command: yarn test
       - run:
           name: Coverage
-          command: "echo Coverage"
+          command: codeclimate-test-reporter < coverage/lcov.info
       - run:
           name: Build
           command: yarn build
@@ -54,7 +54,7 @@ jobs:
       - image: circleci/node:6
     steps:
       - run:
-          name: yarn test
+          name: DEPLOY DEV
           command: "echo DEPLOY DEV"
 
   deploy-pre:
@@ -62,7 +62,7 @@ jobs:
       - image: circleci/node:6
     steps:
       - run:
-          name: yarn test
+          name: DEPLOY PRE
           command: "echo DEPLOY PRE"
 
   deploy-prod:
@@ -70,7 +70,7 @@ jobs:
       - image: circleci/node:6
     steps:
       - run:
-          name: yarn test
+          name: DEPLOY PROD
           command: "echo DEPLOY PROD"
 
 #   build:
