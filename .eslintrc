@@ -81,6 +81,7 @@
     "react/react-in-jsx-scope": 1,
     "import/extensions": 1,
     "react/self-closing-comp": 1,
+    "jsx-a11y/href-no-hash": 0,
     "react/sort-comp": 1
   },
   "globals": {}
