@@ -17,9 +17,13 @@ workflows:
           filters:
             branches:
               only: master
+      - hold:
+         type: approval
+         requires:
+           - build
       - deploy-prod:
           requires:
-            - deploy-pre
+            - hold
           filters:
             branches:
               only: master
@@ -54,6 +58,9 @@ jobs:
       - run:
           name: Build
           command: yarn build
+      - store_artifacts:
+          path: build
+          destination: build
 
   deploy-dev:
     docker:
