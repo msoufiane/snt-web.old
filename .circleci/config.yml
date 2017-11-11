@@ -71,7 +71,7 @@ jobs:
           command: pip install awscli --upgrade --user
       - run:
           name: DEPLOY DEV
-          command: aws s3 sync $CIRCLE_ARTIFACTS/build s3://snt-dev
+          command: python -m aws s3 sync $CIRCLE_ARTIFACTS/build s3://snt-dev
 
   deploy-pre:
     docker:
