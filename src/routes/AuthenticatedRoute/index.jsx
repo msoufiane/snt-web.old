@@ -27,7 +27,8 @@ const AuthenticatedRoute = function AuthenticatedRoute(props) {
 AuthenticatedRoute.propTypes = {
   component: PropTypes.func.isRequired,
   isLogged: PropTypes.bool.isRequired,
-  location: PropTypes.element.isRequired,
+  // eslint-disable-next-line react/forbid-prop-types
+  location: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = state => ({

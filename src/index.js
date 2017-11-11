@@ -7,7 +7,7 @@ import 'admin-lte/dist/css/AdminLTE.css';
 import $ from 'jquery';
 
 import React from 'react';
-import { render } from 'react-dom';
+import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { ConnectedRouter } from 'react-router-redux';
 import registerServiceWorker from './registerServiceWorker';
@@ -28,7 +28,7 @@ require('admin-lte');
 
 const store = configureStore();
 
-render(
+ReactDOM.render(
   <Provider store={store}>
     <ConnectedRouter history={history}>
       <Routes />
