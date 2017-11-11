@@ -47,7 +47,8 @@ class ProfileContainer extends Component {
 
 ProfileContainer.propTypes = {
   logout: PropTypes.func.isRequired,
-  user: PropTypes.element.isRequired,
+  // eslint-disable-next-line react/forbid-prop-types
+  user: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = state => ({

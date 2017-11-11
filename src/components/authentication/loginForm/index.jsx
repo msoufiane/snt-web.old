@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/label-has-for */
 /**
  * Created by soufiaane on 7/14/17.
  */
@@ -20,10 +21,9 @@ class LoginForm extends React.Component {
     const hasError = touched && error !== undefined;
     return (
       <div className={hasError ? 'form-group has-feedback has-error' : 'form-group has-feedback'}>
-        <label className="glyphicon glyphicon-envelope form-control-feedback" htmlFor="username" >
-          <input id="username" className="form-control" placeholder="Username" type="text" {...input} {...custom} />
-          {hasError && <span className="help-block"> {error} </span>}
-        </label>
+        <input className="form-control" placeholder="Username" type="text" {...input} {...custom} />
+        <label className="glyphicon glyphicon-envelope form-control-feedback" htmlFor="username" />
+        {hasError && <span className="help-block"> {error} </span>}
       </div>
     );
   };
@@ -32,10 +32,9 @@ class LoginForm extends React.Component {
     const hasError = touched && error !== undefined;
     return (
       <div className={hasError ? 'form-group has-feedback has-error' : 'form-group has-feedback'}>
-        <label className="glyphicon glyphicon-lock form-control-feedback" htmlFor="password" >
-          <input id="password" className="form-control" placeholder="Password" type="password" {...input} {...custom} />
-          {hasError && <span className="help-block"> {error} </span>}
-        </label>
+        <input className="form-control" placeholder="Password" type="password" {...input} {...custom} />
+        <label className="glyphicon glyphicon-lock form-control-feedback" htmlFor="password" />
+        {hasError && <span className="help-block"> {error} </span>}
       </div>
     );
   };
