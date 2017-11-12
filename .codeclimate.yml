@@ -5,8 +5,9 @@ plugins:
     enabled: true
     channel: "eslint-4"
     config:
-      file: .eslintrc
+      config: .eslintrc
       extensions:
+        - .jsx
         - .js
 
 exclude_patterns:
