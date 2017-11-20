@@ -78,7 +78,7 @@ jobs:
           command: yarn build
       - run:
           name: DEPLOY DEV
-          command: aws s3 sync build/ s3://snt-dev --region us-east-1 --delete
+          command: aws s3 sync build/ s3://snt-dev --region us-east-1
 
   deploy-pre:
     docker:
@@ -99,7 +99,7 @@ jobs:
           command: yarn build
       - run:
           name: DEPLOY PRE
-          command: aws s3 sync build/ s3://snt-pre --region us-east-1 --delete
+          command: aws s3 sync build/ s3://snt-pre --region us-east-1
 
   deploy-prod:
     docker:
@@ -120,69 +120,4 @@ jobs:
           command: yarn build
       - run:
           name: DEPLOY PROD
-          command: aws s3 sync build/ s3://snt-prod --region us-east-1 --delete
-
-#   build:
-#     docker:
-#       - image: circleci/node:6
-#     environment:
-#       - NODE_ENV: development
-#     steps:
-#       - checkout
-#       - restore_cache:
-#           key: dependency-cache-{{ checksum "package.json" }}
-#       - run:
-#           name: yarn Install
-#           command: yarn install
-#
-#       - save_cache:
-#           key: dependency-cache-{{ checksum "package.json" }}
-#           paths:
-#             - node_modules
-#
-#   test:
-#     docker:
-#       - image: circleci/node:7-browsers
-#     steps:
-#       - checkout
-#       - run:
-#           name: Test
-#           command: yarn test
-#       - store_artifacts:
-#           path: coverage
-#           prefix: coverage
-#
-#machine:
-#  node:
-#    version:
-#      8.2.1
-#
-#  environment:
-#    NODE_ENV: development
-#    CIRCLE_ARTIFACTS: "coverage"
-#
-#dependencies:
-#  override:
-#    - npm install:
-#        timeout: 180
-#
-#test:
-#  override:
-#    - yarn run test:CI
-#  post:
-#      - yarn run cover
-#
-#deployment:
-#  production:
-#    branch: master
-#    commands:
-#      - yarn run publish:pro
-#  staging:
-#    branch: pre
-#    commands:
-#      - yarn run publish:pre
-#  dev:
-#    branch: dev
-#    commands:
-#      - yarn run publish:dev
-#
+          command: aws s3 sync build/ s3://snt-prod --region us-east-1
